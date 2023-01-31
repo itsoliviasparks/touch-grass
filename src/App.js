@@ -30,6 +30,7 @@ import axios from "axios";
 import './App.css';
 import StateSelector from "./Components/StateSelector";
 import ActivitySelector from "./Components/ActivitySelector";
+import DisplayParksByActivity from "./Components/DisplayParksByActivity";
 
 function App() {
  return (
@@ -37,6 +38,7 @@ function App() {
     <h1>Let's Go Touch Some Grass!</h1>
     <StateSelector />
     <ActivitySelector />
+    {/* <DisplayParksByActivity /> */}
     </>
   );
 }

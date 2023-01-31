@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import DisplayParksByActivity from "./DisplayParksByActivity";
 
-// need to get stateful arr of all values user as selected - TBD
 const ActivitySelector = () => {
     const [activity, setActivity] = useState([]);
+    const [usersActivitySelection, setUsersActivitySelection] = useState([]);
+
     const activityIds = [
         { id: "13A57703-BB1A-41A2-94B8-53B692EB7238", name: "Astronomy" },
         { id: "071BA73C-1D3C-46D4-A53C-00D5602F7F0E", name: "Boating" },
@@ -20,24 +23,58 @@ const ActivitySelector = () => {
         { id: "587BB2D3-EC35-41B2-B3F7-A39E2B088AEE", name: "Swimming" },
         { id: "8A1C7B17-C2C6-4F7C-9539-EA1E19971D80", name: "Water Skiing" },
         { id: "0B685688-3405-4E2A-ABBA-E3069492EC50", name: "Wildlife Watching" },
-      ];
+    ];
 
     const handleActivityClick = (e) => {
         setActivity(() => {
             if (e.target.checked) {
-                const selection = activity.concat([e.target.name]);
-                return selection; 
+                const selection = activity.concat([e.target.value]);
+                return selection;
             } else {
-                // const i = selection.indexOf(e.target.name)
-                const selection = activity.filter((i) => {return i !== e.target.name});
+                const selection = activity.filter((i) => { return i !== e.target.value });
                 return selection;
             }
         })
     }
     const handleActivitySubmit = (e) => {
         e.preventDefault();
-        // setActivity(selection);
+        setUsersActivitySelection(activity);
     }
+
+    useEffect(() => {
+        let parkListByActivity = [];
+        usersActivitySelection.forEach((activity) => {
+            axios({
+                url: "https://developer.nps.gov/api/v1/activities/parks",
+                method: "GET",
+                dataResponse: "json",
+                params: {
+                    api_key: "7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX",
+                    //👆mine, 👇fake
+                    // api_key: "QAEc6W16eLjqeZ6Qd5VbExugf0AEYofsTOUG6XHG",
+                    id: activity.id,
+                },
+
+            }).then((res) => {
+                const activityArr = [{ activity }];
+                const parkList = res.data.data[0].parks;
+                const parkListActivityArr = activityArr.concat(parkList)
+                parkListByActivity.push(parkListActivityArr);
+                // setIsLoading(false);
+            }).catch(err => {
+                console.log(err);
+            })
+        });
+        DisplayParksByActivity(parkListByActivity);
+
+
+
+
+
+
+
+
+    }, [usersActivitySelection]);
 
     return (
         <form>
@@ -46,21 +83,20 @@ const ActivitySelector = () => {
                 {activityIds.map((activity) => (
                     <div key={activity.id}>
                         <input
-                        type="checkbox"
-                        name={activity.name}
-                        value={activity.id}
-                        onClick={handleActivityClick} />
+                            type="checkbox"
+                            name={activity.name}
+                            value={activity.id}
+                            onClick={handleActivityClick} />
                         <label htmlFor={activity.name}>{activity.name}</label>
                     </div>
                 ))}
                 <button
-                type="submit"
-                onClick={handleActivitySubmit}
+                    type="submit"
+                    onClick={handleActivitySubmit}
                 >Let's Go!</button>
             </fieldset>
-            <h2>you picked {activity}</h2>
         </form>
-        );
+    );
 };
 
 export default ActivitySelector;

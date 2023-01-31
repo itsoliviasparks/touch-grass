@@ -24,9 +24,9 @@ const activityIds = [
   // { id: "0B685688-3405-4E2A-ABBA-E3069492EC50", name: "Wildlife Watching" },
 ];
 
-const getParkListByActivity = () => {
+const getParkListByActivity = ({usersActivitySelection}) => {
   let parkListByActivity = [];
-  activityIds.forEach((activity) => {
+  usersActivitySelection.forEach((activity) => {
     axios({
       url: "https://developer.nps.gov/api/v1/activities/parks",
       method: "GET",
@@ -48,6 +48,7 @@ const getParkListByActivity = () => {
       console.log(err);
     })
   });
+  console.log(parkListByActivity)
   return parkListByActivity;
 };
 

@@ -65,7 +65,6 @@ const StateSelector = () => {
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
             </select>
-            <h2>you picked {usersState}</h2>
         </>
     );
 };
