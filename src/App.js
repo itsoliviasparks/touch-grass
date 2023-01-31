@@ -29,12 +29,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import './App.css';
 import StateSelector from "./Components/StateSelector";
+import ActivitySelector from "./Components/ActivitySelector";
 
 function App() {
  return (
     <>
     <h1>Let's Go Touch Some Grass!</h1>
     <StateSelector />
+    <ActivitySelector />
     </>
   );
 }

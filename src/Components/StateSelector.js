@@ -1,13 +1,17 @@
 import { useState } from "react";
-import ActivityList from "./ActivityList";
 
+// gets & stores users selected state in a stateful variable
+// passes userState as props to ActivityList Component
 const StateSelector = () => {
     const [usersState, setUsersState] = useState("");
     
     return (
         <>
-            <label htmlFor="stateSelector">Where do you want to touch grass?</label>
-            <select name="stateSelector" id="stateSelector" onChange={(e) => {setUsersState(e.target.value)}}>
+            <label htmlFor="stateSelector">Where do you want to get outside?</label>
+            <select
+            name="stateSelector"
+            id="stateSelector"
+            onChange={(e) => {setUsersState(e.target.value)}}>
                 <option value="">Select a State:</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -61,8 +65,7 @@ const StateSelector = () => {
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
             </select>
-            <h2>Here are all the ways you can touch grass in {usersState}</h2>
-            <ActivityList usersState={usersState}/>
+            <h2>you picked {usersState}</h2>
         </>
     );
 };
