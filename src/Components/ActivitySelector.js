@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import DisplayParksByActivity from "./DisplayParksByActivity";
+//displays all activity options on app mount
 
-const ActivitySelector = () => {
-    const [activity, setActivity] = useState([]);
-    const [usersActivitySelection, setUsersActivitySelection] = useState([]);
+//via props:
+    //stores users activity choices into stateful variable usersActivitySelection
+    //when usersActivitySelection is updated, API call is made
 
+const ActivitySelector = ({ handleActivityClick, handleActivitySubmit }) => {
     const activityIds = [
         { id: "13A57703-BB1A-41A2-94B8-53B692EB7238", name: "Astronomy" },
         { id: "071BA73C-1D3C-46D4-A53C-00D5602F7F0E", name: "Boating" },
@@ -25,59 +24,8 @@ const ActivitySelector = () => {
         { id: "0B685688-3405-4E2A-ABBA-E3069492EC50", name: "Wildlife Watching" },
     ];
 
-    const handleActivityClick = (e) => {
-        setActivity(() => {
-            if (e.target.checked) {
-                const selection = activity.concat([e.target.value]);
-                return selection;
-            } else {
-                const selection = activity.filter((i) => { return i !== e.target.value });
-                return selection;
-            }
-        })
-    }
-    const handleActivitySubmit = (e) => {
-        e.preventDefault();
-        setUsersActivitySelection(activity);
-    }
-
-    useEffect(() => {
-        let parkListByActivity = [];
-        usersActivitySelection.forEach((activity) => {
-            axios({
-                url: "https://developer.nps.gov/api/v1/activities/parks",
-                method: "GET",
-                dataResponse: "json",
-                params: {
-                    api_key: "7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX",
-                    //👆mine, 👇fake
-                    // api_key: "QAEc6W16eLjqeZ6Qd5VbExugf0AEYofsTOUG6XHG",
-                    id: activity.id,
-                },
-
-            }).then((res) => {
-                const activityArr = [{ activity }];
-                const parkList = res.data.data[0].parks;
-                const parkListActivityArr = activityArr.concat(parkList)
-                parkListByActivity.push(parkListActivityArr);
-                // setIsLoading(false);
-            }).catch(err => {
-                console.log(err);
-            })
-        });
-        DisplayParksByActivity(parkListByActivity);
-
-
-
-
-
-
-
-
-    }, [usersActivitySelection]);
-
     return (
-        <form>
+        <form onSubmit={handleActivitySubmit}>
             <fieldset>
                 <legend>What do you like to do outside?</legend>
                 {activityIds.map((activity) => (
@@ -90,16 +38,10 @@ const ActivitySelector = () => {
                         <label htmlFor={activity.name}>{activity.name}</label>
                     </div>
                 ))}
-                <button
-                    type="submit"
-                    onClick={handleActivitySubmit}
-                >Let's Go!</button>
+                <button type="submit">Let's Go!</button>
             </fieldset>
         </form>
     );
 };
 
 export default ActivitySelector;
-
-//want a stateful array of all user picked activities
-// NEED SOME HELP HERE

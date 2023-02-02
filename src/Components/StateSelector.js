@@ -1,17 +1,14 @@
-import { useState } from "react";
+//renders dropdown of all States on the page
+// via prop function, gets & stores users selected state in a stateful variable
 
-// gets & stores users selected state in a stateful variable
-// passes userState as props to ActivityList Component
-const StateSelector = () => {
-    const [usersState, setUsersState] = useState("");
-    
+const StateSelector = ({ handleStateSelection }) => {
     return (
         <>
             <label htmlFor="stateSelector">Where do you want to get outside?</label>
             <select
-            name="stateSelector"
-            id="stateSelector"
-            onChange={(e) => {setUsersState(e.target.value)}}>
+                name="stateSelector"
+                id="stateSelector"
+                onChange={handleStateSelection}>
                 <option value="">Select a State:</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
