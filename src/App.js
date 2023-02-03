@@ -1,16 +1,15 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from "axios";
 import './App.css';
 import StateSelector from "./Components/StateSelector";
 import ActivitySelector from "./Components/ActivitySelector";
-import DisplayParksByActivity from "./Components/DisplayParksByActivity";
+import DisplayParkInfo from "./Components/DisplayParkInfo";
 
 function App() {
   const [usersState, setUsersState] = useState("");
   const [activities, setActivities] = useState([]);
-  const [usersActivitySelection, setUsersActivitySelection] = useState([]);
-  const [parksInfo, setParksInfo] = useState([]);
+  const [parkInfo, setParkInfo] = useState([]);
 
   //stores usersState in stateful variable
   const handleStateSelection = (e) => {
@@ -32,15 +31,11 @@ function App() {
     })
   }
 
-  //when ActivitySelector form is submit, updates usersActivitySelection stateful variable with activities arr
-  const handleSubmitButton = (e) => {
-    e.preventDefault();
-    setUsersActivitySelection(activities);
-  }
-
-  //when usersActivitySelection is updated, make API call using usersActivitySelection as params
+  // //when usersActivitySelection is updated, make API call using usersActivitySelection as params
+  // //API DOCS: https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX
   const getParkInfo = () => {
-    usersActivitySelection.forEach((activity) => {
+    const resultArr = [];
+    activities.forEach((activity) => {
       axios({
         url: "https://developer.nps.gov/api/v1/activities/parks",
         method: "GET",
@@ -63,27 +58,28 @@ function App() {
 
           //format data with activity object
           const result = [filteredParkList]
-          result.unshift({activity : activity})
-          console.log(result);
-          //save in stateful variable
-          setParksInfo(result)
+          result.unshift({activity : activity});
 
+          //combine each result from forEach loop into one final arr
+          resultArr.push(result);
         }).catch(err => {
           //need to add some error handling
           console.log(err);
         })
-    });
+    })
+    //save into stateful variable
+    setTimeout(() => {
+      setParkInfo(resultArr);
+    }, 1000)
   }
 
   return (
     <>
       <h1>Let's Go Touch Some Grass!</h1>
       <StateSelector handleStateSelection={handleStateSelection} />
-      <ActivitySelector
-        handleSubmitButton={handleSubmitButton}
-        handleActivitySelection={handleActivitySelection}
-      />
-      <button onClick={getParkInfo}>GO!</button>
+      <ActivitySelector handleActivitySelection={handleActivitySelection}/>
+      <button onClick={getParkInfo}>Go!</button>
+      <DisplayParkInfo parkInfo={parkInfo} /> 
     </>
   );
 }
@@ -91,6 +87,7 @@ function App() {
 export default App;
 
 
+// ❌❌Problem- API call is updating state with each loop, we need to wait until all loops are done to update.❌❌
 
 //on app mount
 //user select states, from list (or from interactive map- stretch goal)
