@@ -5,6 +5,7 @@ const DisplayParkInfo = ({ parkInfo }) => {
         <>
             {
                 parkInfo.map(arr => {
+                    //if list of parks is empty, display that there are no parks
                     if (arr[1].length === 0) {
                         return (
                             <>
@@ -14,6 +15,7 @@ const DisplayParkInfo = ({ parkInfo }) => {
                                 </ul>
                             </>
                         )
+                        //otherwise, return list os all the parks    
                     } else {
                         return (
                             <>
