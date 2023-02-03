@@ -4,13 +4,13 @@ import axios from "axios";
 import './App.css';
 import StateSelector from "./Components/StateSelector";
 import ActivitySelector from "./Components/ActivitySelector";
-import DisplayParksByActivity from "./Components/DisplayParksByActivity";
+import DisplayParkInfo from "./Components/DisplayParkInfo";
 
 function App() {
   const [usersState, setUsersState] = useState("");
   const [activities, setActivities] = useState([]);
   const [usersActivitySelection, setUsersActivitySelection] = useState([]);
-  const [parksInfo, setParksInfo] = useState([]);
+  const [parkInfo, setParkInfo] = useState([]);
 
   //stores usersState in stateful variable
   const handleStateSelection = (e) => {
@@ -39,7 +39,9 @@ function App() {
   }
 
   //when usersActivitySelection is updated, make API call using usersActivitySelection as params
+  //API DOCS: https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX
   const getParkInfo = () => {
+    const resultArr = [];
     usersActivitySelection.forEach((activity) => {
       axios({
         url: "https://developer.nps.gov/api/v1/activities/parks",
@@ -63,18 +65,21 @@ function App() {
 
           //format data with activity object
           const result = [filteredParkList]
-          result.unshift({activity : activity})
-          console.log(result);
-          //save in stateful variable
-          setParksInfo(result)
+          result.unshift({activity : activity});
 
+          //combine each result from forEach loop into one final arr
+          resultArr.push(result);
         }).catch(err => {
           //need to add some error handling
           console.log(err);
         })
     });
+    //save into stateful variable
+    setParkInfo(resultArr)
   }
 
+
+  
   return (
     <>
       <h1>Let's Go Touch Some Grass!</h1>
@@ -84,6 +89,7 @@ function App() {
         handleActivitySelection={handleActivitySelection}
       />
       <button onClick={getParkInfo}>GO!</button>
+      <DisplayParkInfo parkInfo={parkInfo} />
     </>
   );
 }
