@@ -1,18 +1,6 @@
 // gets past parkListByActivity as props
 
 const DisplayParksByActivity = ({ parksByActivityAndState }) => {
-    console.log(parksByActivityAndState)
-        return (
-            <div>
-                {parksByActivityAndState.forEach((arr) => {
-                    return(
-                        arr.map((activity) => {
-                            console.log(activity);
-                        })
-                    )
-                })}
-            </div>
-        )
 
 };
 

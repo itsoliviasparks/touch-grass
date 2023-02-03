@@ -4,7 +4,7 @@
     //stores users activity choices into stateful variable usersActivitySelection
     //when usersActivitySelection is updated, API call is made
 
-const ActivitySelector = ({ handleActivityClick, handleActivitySubmit }) => {
+const ActivitySelector = ({ handleActivitySelection, handleSubmitButton }) => {
     const activityIds = [
         { id: "13A57703-BB1A-41A2-94B8-53B692EB7238", name: "Astronomy" },
         { id: "071BA73C-1D3C-46D4-A53C-00D5602F7F0E", name: "Boating" },
@@ -25,7 +25,7 @@ const ActivitySelector = ({ handleActivityClick, handleActivitySubmit }) => {
     ];
 
     return (
-        <form onSubmit={handleActivitySubmit}>
+        <form onSubmit={handleSubmitButton}>
             <fieldset>
                 <legend>What do you like to do outside?</legend>
                 {activityIds.map((activity) => (
@@ -34,7 +34,7 @@ const ActivitySelector = ({ handleActivityClick, handleActivitySubmit }) => {
                             type="checkbox"
                             name={activity.name}
                             value={activity.id}
-                            onClick={handleActivityClick} />
+                            onClick={handleActivitySelection} />
                         <label htmlFor={activity.name}>{activity.name}</label>
                     </div>
                 ))}
