@@ -1,5 +1,5 @@
 const InputError = () => {
-    return <h3>Pls enter your shit</h3>
+    return <p className="error">For General Information, Please Select a U.S. State & at least one (1) Activity</p>
 }
 
 export default InputError;
