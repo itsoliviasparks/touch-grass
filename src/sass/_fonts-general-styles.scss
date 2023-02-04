@@ -1,0 +1,122 @@
+@use "_variables.scss" as *;
+
+html {
+    background-color: $tan;
+    font-family: $body-font;
+    font-size: 62.5%;
+    letter-spacing: 0.05rem;
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wrapper {
+    width: 75%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+//header fonts
+h1,
+header p,
+h2 {
+    margin: 0;
+    font-family: $header-font;
+    text-align: center;
+}
+
+h1 {
+    margin-top: -0.3rem;
+    margin-bottom: -0.6rem;
+    color: $orange;
+    font-size: 7.5rem;
+    letter-spacing: 1rem;
+}
+
+h2 {
+    font-size: 2.8rem;
+    letter-spacing: 0.6rem;
+    color: $yellow;
+}
+
+header p {
+    color: $green;
+    font-size: 2.5rem;
+    letter-spacing: 0.9rem;
+    &:first-child {
+        font-size: 2rem;
+        letter-spacing: 0.5rem;
+    }
+    &:last-child {
+        margin-top: 0.3rem;
+        font-size: 1.5rem;
+        letter-spacing: 0.2rem;
+    }
+}
+
+//body fonts
+p {
+    color: $green;
+    font-size: 1.5rem;
+    letter-spacing: 0.3rem;
+    text-align: center;
+}
+
+p.error {
+    color: $yellow;
+    text-transform: none;
+}
+
+footer p {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+//links
+a {
+    color: $green;
+    &:hover,
+    &:focus {
+        color: $orange;
+    }
+}
+
+//form fonts
+label,
+legend,
+select,
+button {
+    font-family: $body-font;
+    font-size: 2.5rem;
+    color: $tan;
+}
+
+select,
+button {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+    text-align: center;
+}
+
+//buttons
+button {
+    margin: 5px 0 25px 0;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 3px;
+    color: $green;
+    background-color: $orange;
+    transition: 0.3s;
+    &:hover,
+    &:focus {
+        background-color: $yellow;
+    }
+}

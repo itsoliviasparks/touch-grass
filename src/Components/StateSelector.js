@@ -3,8 +3,12 @@
 
 const StateSelector = ({ handleStateSelection }) => {
     return (
-        <>
-            <label htmlFor="stateSelector">Where do you want to get outside?</label>
+        <fieldset className="state-selector">
+            <label htmlFor="stateSelector">
+                <h2>
+                    Where is your field trip taking you?
+                </h2>
+            </label>
             <select
                 name="stateSelector"
                 id="stateSelector"
@@ -62,7 +66,7 @@ const StateSelector = ({ handleStateSelection }) => {
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
             </select>
-        </>
+        </fieldset>
     );
 };
 
