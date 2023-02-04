@@ -20,20 +20,20 @@ function App() {
   const handleActivitySelection = (e) => {
     setActivities(() => {
       if (e.target.checked) {
-        const selection = activities.concat([e.target.value]);
+        const selection = activities.concat({ id: e.target.value, name: e.target.name });
         return selection;
       } else {
         const selection = activities.filter((i) => {
-          return i !== e.target.value
+          return i.id !== e.target.value
         });
         return selection;
       }
     })
   }
-
+  
   // //when usersActivitySelection is updated, make API call using usersActivitySelection as params
   // //API DOCS: https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX
-  const getParkInfo = () => {
+    const getParkInfo = () => {
     const resultArr = [];
     activities.forEach((activity) => {
       axios({
@@ -44,7 +44,7 @@ function App() {
           // api_key: "7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX",
           //👆mine, 👇fake
           api_key: "QAEc6W16eLjqeZ6Qd5VbExugf0AEYofsTOUG6XHG",
-          id: activity,
+          id: activity.id,
         },
       })
         .then((res) => {
@@ -58,7 +58,7 @@ function App() {
 
           //format data with activity object
           const result = [filteredParkList]
-          result.unshift({activity : activity});
+          result.unshift({ id: activity.id, name: activity.name });
 
           //combine each result from forEach loop into one final arr
           resultArr.push(result);
