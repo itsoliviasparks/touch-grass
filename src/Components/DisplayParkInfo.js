@@ -8,28 +8,26 @@ const DisplayParkInfo = ({ parkInfo }) => {
                     //if list of parks is empty, display that there are no parks
                     if (arr[1].length === 0) {
                         return (
-                            <>
-                                <h3>{arr[0].activity}</h3>
-                                <ul>
-                                    <li>There are no parks with this activity</li>
-                                </ul>
-                            </>
+                            <div key={arr[0].id}>
+                                <h3>{arr[0].name}</h3>
+                                    <p>There are no parks with this activity</p>
+                            </div>
                         )
                         //otherwise, return list os all the parks    
                     } else {
                         return (
-                            <>
-                                <h3>{arr[0].activity}</h3>
+                            <div key={arr[0].id}>
+                                <h3>{arr[0].name}</h3>
                                 <ul>
                                     {
                                         arr[1].map((park) => {
                                             return (
-                                                <li>{park.name}</li>
+                                                <li key={park.parkCode}>{park.name}</li>
                                             )
                                         })
                                     }
                                 </ul>
-                            </>
+                            </div>
                         )
                     }
                 })
