@@ -72,16 +72,12 @@ function App() {
     setTimeout(() => {
       setParkInfo(resultArr);
     }, 1000)
+    // setUsersState("");
+    // setActivities([]);
   }
 
   const handleButton = () => {
-    if (usersState === "" && activities.length === 0) {
-      setInputMissing(true)
-    } else if (usersState === "") {
-      console.log("pick a state")
-      setInputMissing(true)
-    } else if (activities.length === 0) {
-      console.log("pick some stuff to do")
+    if (usersState === "" || activities.length === 0) {
       setInputMissing(true)
     } else {
       setInputMissing(false)
@@ -93,7 +89,7 @@ function App() {
     <>
       <h1>Let's Go Touch Some Grass!</h1>
       <StateSelector handleStateSelection={handleStateSelection} />
-      <ActivitySelector handleActivitySelection={handleActivitySelection}/>
+      <ActivitySelector handleActivitySelection={handleActivitySelection} />
       <button onClick={handleButton}>Go!</button>
       { inputMissing == true
           ? <InputError />
