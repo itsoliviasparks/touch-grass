@@ -1,15 +1,17 @@
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from "axios";
 import './App.css';
 import StateSelector from "./Components/StateSelector";
 import ActivitySelector from "./Components/ActivitySelector";
 import DisplayParkInfo from "./Components/DisplayParkInfo";
+import InputError from './Components/InputError';
 
 function App() {
   const [usersState, setUsersState] = useState("");
   const [activities, setActivities] = useState([]);
   const [parkInfo, setParkInfo] = useState([]);
+  const [inputMissing, setInputMissing] = useState();
 
   //stores usersState in stateful variable
   const handleStateSelection = (e) => {
@@ -63,8 +65,7 @@ function App() {
           //combine each result from forEach loop into one final arr
           resultArr.push(result);
         }).catch(err => {
-          //need to add some error handling
-          console.log(err);
+          alert(`We couldn't find any places for you to touch grass. Please try again later. (${err.message})`)
         })
     })
     //save into stateful variable
@@ -73,12 +74,31 @@ function App() {
     }, 1000)
   }
 
+  const handleButton = () => {
+    if (usersState === "" && activities.length === 0) {
+      setInputMissing(true)
+    } else if (usersState === "") {
+      console.log("pick a state")
+      setInputMissing(true)
+    } else if (activities.length === 0) {
+      console.log("pick some stuff to do")
+      setInputMissing(true)
+    } else {
+      setInputMissing(false)
+      getParkInfo()
+    }
+  };
+
   return (
     <>
       <h1>Let's Go Touch Some Grass!</h1>
       <StateSelector handleStateSelection={handleStateSelection} />
       <ActivitySelector handleActivitySelection={handleActivitySelection}/>
-      <button onClick={getParkInfo}>Go!</button>
+      <button onClick={handleButton}>Go!</button>
+      { inputMissing == true
+          ? <InputError />
+          : null
+      }
       <DisplayParkInfo parkInfo={parkInfo} /> 
     </>
   );
