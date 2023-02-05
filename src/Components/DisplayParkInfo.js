@@ -54,7 +54,7 @@ const DisplayParkInfo =
                                                         arr[1].map((park) => {
                                                             return (
                                                                 <li className="park" key={park.parkCode}>
-                                                                    <a href={park.url} target="_blank">{park.name}</a>
+                                                                    <a href={park.url} target="_blank" rel="noreferrer">{park.name}</a>
                                                                 </li>
                                                             )
                                                         })
