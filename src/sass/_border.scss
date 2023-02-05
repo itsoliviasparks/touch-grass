@@ -3,9 +3,9 @@
 .border-container {
     .border {
         content: '';
+        z-index: 100;
         position: fixed;
         background: $green;
-        z-index: 100;
     }
     .right {
         top: 0;

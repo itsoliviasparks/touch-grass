@@ -2,10 +2,10 @@
 
 main {
     position: relative;
-    background-color: $green;
-    border-radius: 3px;
-    padding: 45px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 3px;
+    padding: 45px;
+    background-color: $green;
 }
