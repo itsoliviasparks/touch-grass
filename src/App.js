@@ -11,6 +11,7 @@ import UserSelectors from "./Components/UserSelectors";
 import DisplayParkInfo from "./Components/DisplayParkInfo";
 import Footer from "./Components/Footer";
 import Error404 from "./Components/Error404";
+import ApiError from "./Components/ApiError";
 
 function App() {
   const [usersState, setUsersState] = useState("");
@@ -63,9 +64,9 @@ function App() {
         method: "GET",
         dataResponse: "json",
         params: {
-          // api_key: "7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX",
-          //👆mine, 👇fake
-          api_key: "QAEc6W16eLjqeZ6Qd5VbExugf0AEYofsTOUG6XHG",
+          api_key: "7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX",
+          //👆mine, 👇error
+          // api_key: "QAEc6W16eLjqeZ6Qd5VbExugf0AEYofsTOUG6XHG-",
           id: activity.id,
         },
       })
@@ -85,7 +86,7 @@ function App() {
           //combine each result from forEach loop into one final arr
           resultArr.push(result);
         }).catch(err => {
-          alert(`We couldn't find any places for you to touch grass. Please try again later. (${err.message})`)
+          navigate("/MIA");
         })
     })
     //save into stateful variable
@@ -118,6 +119,7 @@ function App() {
           <Route path="/park-info" element={
             <DisplayParkInfo parkInfo={parkInfo} usersStateFull={usersStateFull} />
           } />
+          <Route path="/MIA" element={<ApiError />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </main>
