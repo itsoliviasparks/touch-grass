@@ -11,7 +11,8 @@ const DisplayParkInfo =
         setUsersState,
         usersStateFull,
         setUsersStateFull,
-        setActivities
+        setActivities,
+        setInputError
     }) => {
         const handleClose = () => {
             setIsLoading(true)
@@ -19,7 +20,9 @@ const DisplayParkInfo =
             setUsersState("");
             setUsersStateFull("");
             setActivities([]);
-        }
+            setInputError(false);
+        };
+        
         return (
             <>
                 {isLoading ? <Loading /> : (

@@ -6,7 +6,7 @@ const Border = () => {
         <div className="border bottom"></div>
         <div className="border left"></div>
       </div>
-    )
+    );
 };
 
 export default Border;

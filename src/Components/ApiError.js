@@ -11,8 +11,8 @@ const ApiError = () => {
             <h3>U.S. National Park Service Data is missing in action</h3>
             <h3>Please try again</h3>
         </>
-    )
-}
+    );
+};
 
 export default ApiError;
 

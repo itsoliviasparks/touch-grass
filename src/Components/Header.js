@@ -6,7 +6,7 @@ const Header = () => {
             <p>A National Park Search tool</p>
             <p>Crafted in conjunction with the U.S. National Park Service</p>
         </header>
-    )
-}
+    );
+};
 
 export default Header;

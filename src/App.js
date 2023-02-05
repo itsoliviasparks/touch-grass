@@ -14,19 +14,19 @@ import Error404 from "./Components/Error404";
 import ApiError from "./Components/ApiError";
 
 function App() {
-  const navigate = useNavigate();
-  
   const [usersState, setUsersState] = useState("");
   const [usersStateFull, setUsersStateFull] = useState("");
+  const [inputError, setInputError] = useState(false)
   const [activities, setActivities] = useState([]);
   const [parkInfo, setParkInfo] = useState([]);
-  const [inputMissing, setInputMissing] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   //stores usersState in stateful variable
   const handleStateSelection = (e) => {
-    setUsersState(e.target.value)
-    setUsersStateFull(e.target.selectedOptions[0].label)
+    setUsersState(e.target.value);
+    setUsersStateFull(e.target.selectedOptions[0].label);
   };
 
   //adds/removes activities to the stateful activities arr as user clicks
@@ -37,20 +37,20 @@ function App() {
         return selection;
       } else {
         const selection = activities.filter((i) => {
-          return i.id !== e.target.value
+          return i.id !== e.target.value;
         });
         return selection;
       }
     })
-  }
+  };
 
-  const handleButton = () => {
-    navigate("/park-info");
+  const handleButton = (e) => {
+    e.preventDefault();
     if (usersState === "" || activities.length === 0) {
-      setInputMissing(true)
+      setInputError(true);
     } else {
-      setInputMissing(false)
-      getParkInfo()
+      getParkInfo();
+      navigate("/park-info");
     }
   };
 
@@ -65,8 +65,6 @@ function App() {
         dataResponse: "json",
         params: {
           api_key: "7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX",
-          //👆mine, 👇error
-          // api_key: "QAEc6W16eLjqeZ6Qd5VbExugf0AEYofsTOUG6XHG-",
           id: activity.id,
         },
       })
@@ -80,7 +78,7 @@ function App() {
           })
 
           //format data with activity object
-          const result = [filteredParkList]
+          const result = [filteredParkList];
           result.unshift({ id: activity.id, name: activity.name });
 
           //combine each result from forEach loop into one final arr
@@ -93,8 +91,8 @@ function App() {
     setTimeout(() => {
       setParkInfo(resultArr);
       setIsLoading(false);
-    }, 2000)
-  }
+    }, 2000);
+  };
 
   return (
     <>
@@ -103,23 +101,24 @@ function App() {
       <main className="wrapper">
         <Routes>
           <Route path="/" element={
-              <UserSelectors
+            <UserSelectors
               handleStateSelection={handleStateSelection}
               handleActivitySelection={handleActivitySelection}
               handleButton={handleButton}
-              inputMissing={inputMissing}
-              />
+              inputError={inputError}
+            />
           } />
           <Route path="/park-info" element={
             <DisplayParkInfo
-            isLoading={isLoading}
-            setIsLoading={setIsLoading}
-            parkInfo={parkInfo}
-            setParkInfo={setParkInfo}
-            setUsersState={setUsersState}
-            usersStateFull={usersStateFull}
-            setUsersStateFull={setUsersStateFull}
-            setActivities={setActivities} />
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              parkInfo={parkInfo}
+              setParkInfo={setParkInfo}
+              setUsersState={setUsersState}
+              usersStateFull={usersStateFull}
+              setUsersStateFull={setUsersStateFull}
+              setActivities={setActivities}
+              setInputError={setInputError} />
           } />
           <Route path="/MIA" element={<ApiError />} />
           <Route path="*" element={<Error404 />} />
@@ -128,7 +127,7 @@ function App() {
       <Footer />
     </>
   );
-}
+};
 
 export default App;
 
