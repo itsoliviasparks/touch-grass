@@ -1,6 +1,7 @@
 @use "_variables.scss" as *;
 
 main {
+    position: relative;
     background-color: $green;
     border-radius: 3px;
     padding: 45px;

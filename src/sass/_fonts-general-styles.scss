@@ -45,11 +45,13 @@ h3 {
     color: $yellow;
 }
 
-h3 {
-    // font-size: 2.2rem;
-    // letter-spacing: 0.5rem;
-    color: $orange;
+h2.state {
+    font-size: 3.5rem;
+    letter-spacing: 0.8rem;
+    padding-bottom: 20px;
 }
+
+h3 { color: $orange; }
 
 header p {
     color: $green;
@@ -86,6 +88,7 @@ p.no-parks {
 
 p.error {
     color: $yellow;
+    margin-bottom: 0;
 }
 
 footer p,
@@ -139,4 +142,9 @@ button {
     &:focus {
         background-color: $yellow;
     }
+}
+
+//icons
+i {
+    color: $tan;
 }

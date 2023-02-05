@@ -1,8 +1,9 @@
 
-import { useState } from 'react';
+import { useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom"
 import axios from "axios";
 
-import './App.scss';
+import "./App.scss";
 
 import Border from "./Components/Border";
 import Header from "./Components/Header";
@@ -14,13 +15,17 @@ import Footer from "./Components/Footer";
 
 function App() {
   const [usersState, setUsersState] = useState("");
+  const [usersStateFull, setUsersStateFull] = useState("");
   const [activities, setActivities] = useState([]);
   const [parkInfo, setParkInfo] = useState([]);
-  const [inputMissing, setInputMissing] = useState();
+  const [inputMissing, setInputMissing] = useState("");
+  // const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   //stores usersState in stateful variable
   const handleStateSelection = (e) => {
     setUsersState(e.target.value)
+    setUsersStateFull(e.target.selectedOptions[0].label)
   };
 
   //adds/removes activities to the stateful activities arr as user clicks
@@ -40,6 +45,7 @@ function App() {
 
 
   const handleButton = () => {
+    navigate("/park-info");
     if (usersState === "" || activities.length === 0) {
       setInputMissing(true)
     } else {
@@ -86,23 +92,44 @@ function App() {
     //save into stateful variable
     setTimeout(() => {
       setParkInfo(resultArr);
+      // setIsLoading(false);
     }, 1000)
-    // setUsersState("");
-    // setActivities([]);
   }
 
   return (
     <>
-        <Border />
-        <Header />
-        <main className="wrapper">
-          <StateSelector handleStateSelection={handleStateSelection} />
-          <ActivitySelector handleActivitySelection={handleActivitySelection} />
-          <button onClick={handleButton}>Your Adventure Awaits</button>
-          {inputMissing == true ? <InputError /> : null}
-          <DisplayParkInfo parkInfo={parkInfo} />
-        </main>
-        <Footer />
+      <Border />
+      <Header />
+      <main className="wrapper">
+        {/* {
+        isLoading
+        ? <p className="error">...loading</p>
+        :          <DisplayParkInfo parkInfo={parkInfo} />
+          } */}
+
+        <Routes>
+          <Route path="/" element={
+            <>
+              <StateSelector handleStateSelection={handleStateSelection} />
+              <ActivitySelector handleActivitySelection={handleActivitySelection} />
+              <button onClick={handleButton}>Your Adventure Awaits</button>
+              {inputMissing == true ? <InputError /> : null}
+            </>
+          } />
+        </Routes>
+
+
+
+
+
+        <Routes>
+          <Route path="/park-info" element={
+              <DisplayParkInfo parkInfo={parkInfo} usersStateFull={usersStateFull} />
+          } />
+        </Routes>
+
+      </main>
+      <Footer />
     </>
   );
 }

@@ -1,12 +1,17 @@
 @use "_variables.scss" as *;
 
-section.park-info {
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.info {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-self: center;
-    margin-top: 45px;
 }
 
 .activity-card {
