@@ -14,13 +14,14 @@ import Error404 from "./Components/Error404";
 import ApiError from "./Components/ApiError";
 
 function App() {
+  const navigate = useNavigate();
+  
   const [usersState, setUsersState] = useState("");
   const [usersStateFull, setUsersStateFull] = useState("");
   const [activities, setActivities] = useState([]);
   const [parkInfo, setParkInfo] = useState([]);
   const [inputMissing, setInputMissing] = useState("");
-  // const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   //stores usersState in stateful variable
   const handleStateSelection = (e) => {
@@ -42,7 +43,6 @@ function App() {
       }
     })
   }
-
 
   const handleButton = () => {
     navigate("/park-info");
@@ -92,8 +92,8 @@ function App() {
     //save into stateful variable
     setTimeout(() => {
       setParkInfo(resultArr);
-      // setIsLoading(false);
-    }, 1000)
+      setIsLoading(false);
+    }, 2000)
   }
 
   return (
@@ -101,12 +101,6 @@ function App() {
       <Border />
       <Header />
       <main className="wrapper">
-        {/* {
-        isLoading
-        ? <p className="error">...loading</p>
-        :          <DisplayParkInfo parkInfo={parkInfo} />
-          } */}
-
         <Routes>
           <Route path="/" element={
               <UserSelectors
@@ -117,7 +111,15 @@ function App() {
               />
           } />
           <Route path="/park-info" element={
-            <DisplayParkInfo parkInfo={parkInfo} usersStateFull={usersStateFull} />
+            <DisplayParkInfo
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+            parkInfo={parkInfo}
+            setParkInfo={setParkInfo}
+            setUsersState={setUsersState}
+            usersStateFull={usersStateFull}
+            setUsersStateFull={setUsersStateFull}
+            setActivities={setActivities} />
           } />
           <Route path="/MIA" element={<ApiError />} />
           <Route path="*" element={<Error404 />} />
