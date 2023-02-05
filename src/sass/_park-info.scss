@@ -15,9 +15,12 @@
     padding: 15px 25px;
 }
 
-.park-list li {
-    list-style-type: disc;
-    list-style-position: inside;
-    font-size: 2rem;
-    color: $green;
+.park-list {
+    margin: 2.2rem 0;
+    li {
+        list-style-type: disc;
+        list-style-position: inside;
+        font-size: 2rem;
+        color: $green;
+    }
 }

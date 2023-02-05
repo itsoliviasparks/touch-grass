@@ -10,6 +10,7 @@ import Header from "./Components/Header";
 import UserSelectors from "./Components/UserSelectors";
 import DisplayParkInfo from "./Components/DisplayParkInfo";
 import Footer from "./Components/Footer";
+import Error404 from "./Components/Error404";
 
 function App() {
   const [usersState, setUsersState] = useState("");
@@ -117,6 +118,7 @@ function App() {
           <Route path="/park-info" element={
             <DisplayParkInfo parkInfo={parkInfo} usersStateFull={usersStateFull} />
           } />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </main>
       <Footer />
