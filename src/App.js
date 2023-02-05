@@ -1,16 +1,14 @@
 
 import { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom"
+import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import "./App.scss";
 
 import Border from "./Components/Border";
 import Header from "./Components/Header";
-import StateSelector from "./Components/StateSelector";
-import ActivitySelector from "./Components/ActivitySelector";
+import UserSelectors from "./Components/UserSelectors";
 import DisplayParkInfo from "./Components/DisplayParkInfo";
-import InputError from "./Components/InputError";
 import Footer from "./Components/Footer";
 
 function App() {
@@ -109,25 +107,17 @@ function App() {
 
         <Routes>
           <Route path="/" element={
-            <>
-              <StateSelector handleStateSelection={handleStateSelection} />
-              <ActivitySelector handleActivitySelection={handleActivitySelection} />
-              <button onClick={handleButton}>Your Adventure Awaits</button>
-              {inputMissing == true ? <InputError /> : null}
-            </>
+              <UserSelectors
+              handleStateSelection={handleStateSelection}
+              handleActivitySelection={handleActivitySelection}
+              handleButton={handleButton}
+              inputMissing={inputMissing}
+              />
           } />
-        </Routes>
-
-
-
-
-
-        <Routes>
           <Route path="/park-info" element={
-              <DisplayParkInfo parkInfo={parkInfo} usersStateFull={usersStateFull} />
+            <DisplayParkInfo parkInfo={parkInfo} usersStateFull={usersStateFull} />
           } />
         </Routes>
-
       </main>
       <Footer />
     </>

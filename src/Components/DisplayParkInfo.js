@@ -6,7 +6,7 @@ const DisplayParkInfo = ({ parkInfo, usersStateFull }) => {
         <section className="park-info">
             <Link to="/" className="close">
                 <p className="sr-only">To Home</p>
-                <i class="fa-solid fa-circle-xmark"></i>
+                <i className="fa-solid fa-circle-xmark"></i>
             </Link>
             <h2 className="state">{usersStateFull}</h2>
             <div className="info">

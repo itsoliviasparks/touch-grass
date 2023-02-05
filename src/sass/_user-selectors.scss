@@ -1,5 +1,11 @@
 @use "_variables.scss" as *;
 
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 fieldset {
     border: none;
     display: flex;
@@ -9,25 +15,26 @@ fieldset {
 }
 
 fieldset.state-selector {
-    width: 70%;
     select {
-        margin: 5px 0 25px 0;
+        align-self: center;
+        width: 70%;
+        margin: 0 0 25px 0;
         padding: 15px 25px;
         background: transparent;
         border: 5px solid $tan;
         border-radius: 3px;
-        outline: none;
         transition: all 0.3s;
         &:hover,
         &:focus,
         &:focus-within {
             background: $green;
         }
-      }
+    }
 }
 
 fieldset.activity-selector {
-    legend {width: 100%;}
+    margin-top: 10px;
+    legend { width: 100%; }
     ul {
         display: flex;
         flex-wrap: wrap;
@@ -43,25 +50,20 @@ fieldset.activity-selector {
             align-items: center;
             text-align: center;
         }
-    }
-}
-
-form {
-    margin-top: 20px;
-    label {
-        width: 100%;
-        padding: 15px 5px;
-        border-radius: 3px;
-        transition: 0.3s;
-        &:hover,
-        &:focus {
-            color: $green;
-            background-color: $yellow;
+        label {
+            width: 100%;
+            padding: 15px 5px;
+            border-radius: 3px;
+            transition: 0.3s;
+            &:hover,
+            &:focus {
+                color: $green;
+                background-color: $yellow;
+            }
         }
     }
-}
-
-input[type='checkbox']:checked + label {
-    color: $green;
-    background-color: $tan;
+    input[type='checkbox']:checked+label {
+        color: $green;
+        background-color: $tan;
+    }
 }
