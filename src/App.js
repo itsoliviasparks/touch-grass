@@ -4,6 +4,7 @@ import axios from "axios";
 
 import './App.scss';
 
+import Border from "./Components/Border";
 import Header from "./Components/Header";
 import StateSelector from "./Components/StateSelector";
 import ActivitySelector from "./Components/ActivitySelector";
@@ -36,6 +37,16 @@ function App() {
       }
     })
   }
+
+
+  const handleButton = () => {
+    if (usersState === "" || activities.length === 0) {
+      setInputMissing(true)
+    } else {
+      setInputMissing(false)
+      getParkInfo()
+    }
+  };
 
   // //when usersActivitySelection is updated, make API call using usersActivitySelection as params
   // //API DOCS: https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX
@@ -80,35 +91,18 @@ function App() {
     // setActivities([]);
   }
 
-  const handleButton = () => {
-    if (usersState === "" || activities.length === 0) {
-      setInputMissing(true)
-    } else {
-      setInputMissing(false)
-      getParkInfo()
-    }
-  };
-
   return (
     <>
+        <Border />
         <Header />
         <main className="wrapper">
           <StateSelector handleStateSelection={handleStateSelection} />
           <ActivitySelector handleActivitySelection={handleActivitySelection} />
           <button onClick={handleButton}>Your Adventure Awaits</button>
-          {inputMissing == true
-            ? <InputError />
-            : null
-          }
+          {inputMissing == true ? <InputError /> : null}
           <DisplayParkInfo parkInfo={parkInfo} />
         </main>
         <Footer />
-      <div className="border-container">
-        <div className="border top"></div>
-        <div className="border right"></div>
-        <div className="border bottom"></div>
-        <div className="border left"></div>
-      </div>
     </>
   );
 }
