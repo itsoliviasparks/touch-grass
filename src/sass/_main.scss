@@ -3,70 +3,8 @@
 main {
     background-color: $green;
     border-radius: 3px;
-    padding: 20px;
+    padding: 45px;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-fieldset {
-    border: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-fieldset.state-selector {
-    width: 70%;
-    select {
-        margin: 5px 0 25px 0;
-        padding: 15px 25px;
-        background: transparent;
-        border: 5px solid $tan;
-        border-radius: 3px;
-        outline: none;
-        transition: all 0.3s;
-        &:hover,
-        &:focus,
-        &:focus-within {
-            background: $green;
-        }
-      }
-}
-
-fieldset.activity-selector {
-    legend {width: 100%;}
-    ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        align-items: center;
-        width: 100%;
-        li {
-            width: 20%;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-    }
-}
-
-form label {
-    width: 100%;
-    padding: 15px 5px;
-    border-radius: 3px;
-    transition: 0.3s;
-    &:hover,
-    &:focus {
-        color: $green;
-        background-color: $yellow;
-    }
-}
-
-input[type='checkbox']:checked + label {
-    color: $green;
-    background-color: $tan;
 }

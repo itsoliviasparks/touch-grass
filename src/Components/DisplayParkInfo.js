@@ -2,27 +2,30 @@
 
 const DisplayParkInfo = ({ parkInfo }) => {
     return (
-        <>
+        <section className="park-info">
             {
                 parkInfo.map(arr => {
                     //if list of parks is empty, display that there are no parks
                     if (arr[1].length === 0) {
                         return (
-                            <div key={arr[0].id}>
+                            <div
+                            className="activity-card" key={arr[0].id}>
                                 <h3>{arr[0].name}</h3>
-                                    <p>There are no parks with this activity</p>
+                                    <p className="no-parks">There are no parks with this activity</p>
                             </div>
                         )
                         //otherwise, return list os all the parks    
                     } else {
                         return (
-                            <div key={arr[0].id}>
+                            <div className="activity-card" key={arr[0].id}>
                                 <h3>{arr[0].name}</h3>
-                                <ul>
+                                <ul className="park-list">
                                     {
                                         arr[1].map((park) => {
                                             return (
-                                                <li key={park.parkCode}>{park.name}</li>
+                                                <li className="park" key={park.parkCode}>
+                                                    <a href={park.url} target="_blank">{park.name}</a>
+                                                </li>
                                             )
                                         })
                                     }
@@ -32,7 +35,7 @@ const DisplayParkInfo = ({ parkInfo }) => {
                     }
                 })
             }
-        </>
+        </section>
     );
 };
 
