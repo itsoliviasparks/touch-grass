@@ -19,22 +19,22 @@ const DisplayParkInfo =
                             <i className="fa-solid fa-circle-xmark"></i>
                         </Link>
                         <h2 className="state">{usersStateFull}</h2>
-                        <div className="info">
+                        <ul className="info">
                             {
                                 parkInfo.map(arr => {
                                     //if list of parks is empty, display that there are no parks
                                     if (arr[1].length === 0) {
                                         return (
-                                            <div
+                                            <li
                                                 className="activity-card" key={arr[0].id}>
                                                 <h3>{arr[0].name}</h3>
                                                 <p className="no-parks">There are no parks with this activity</p>
-                                            </div>
+                                            </li>
                                         )
                                         //otherwise, return list os all the parks    
                                     } else {
                                         return (
-                                            <div className="activity-card" key={arr[0].id}>
+                                            <li className="activity-card" key={arr[0].id}>
                                                 <h3>{arr[0].name}</h3>
                                                 <ul className="park-list">
                                                     {
@@ -47,12 +47,12 @@ const DisplayParkInfo =
                                                         })
                                                     }
                                                 </ul>
-                                            </div>
+                                            </li>
                                         )
                                     }
                                 })
                             }
-                        </div>
+                        </ul>
                     </section>
                 )}
             </>

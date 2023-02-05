@@ -14,6 +14,8 @@ li {
     list-style: none;
 }
 
+section { width: 100%; }
+
 .wrapper {
     width: 75%;
     max-width: 1100px;
@@ -38,8 +40,7 @@ h1 {
     letter-spacing: 1rem;
 }
 
-h2,
-h3 {
+h2{
     font-size: 2.8rem;
     letter-spacing: 0.5rem;
     color: $yellow;
@@ -52,7 +53,11 @@ h2.state {
     letter-spacing: 0.8rem;
 }
 
-h3 { color: $orange; }
+h3 {
+    font-size: 2.4rem;
+    letter-spacing: 0.5rem;
+    color: $orange;
+}
 
 header p {
     color: $green;
@@ -117,13 +122,12 @@ legend,
 select,
 button {
     font-family: $body-font;
-    font-size: 2.3rem;
+    font-size: 2rem;
     color: $tan;
 }
 
 select,
 button {
-    font-size: 2rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.4rem;
