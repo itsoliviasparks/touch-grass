@@ -5,27 +5,14 @@ import Loading from "./Loading";
 const DisplayParkInfo =
     ({
         isLoading,
-        setIsLoading,
         parkInfo,
-        setParkInfo,
-        setUsersState,
         usersStateFull,
-        setUsersStateFull,
-        setActivities,
-        setInputError
+        handleClose
     }) => {
-        const handleClose = () => {
-            setIsLoading(true)
-            setParkInfo([]);
-            setUsersState("");
-            setUsersStateFull("");
-            setActivities([]);
-            setInputError(false);
-        };
         
         return (
             <>
-                {isLoading ? <Loading /> : (
+                {isLoading ? <Loading handleClose={handleClose}/> : (
                     <section className="park-info">
                         <Link to="/" className="close" onClick={handleClose}>
                             <p className="sr-only">To Home</p>
