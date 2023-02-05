@@ -1,7 +1,6 @@
 @use "_variables.scss" as *;
 
 .info {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -13,6 +12,7 @@
     width: 47%;
     margin: 10px 0;
     padding: 15px 25px;
+    border-radius: 3px;
 }
 
 .park-list {
