@@ -1,26 +1,32 @@
 
-import { useState } from 'react';
+import { useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import './App.scss';
+import "./App.scss";
 
 import Border from "./Components/Border";
 import Header from "./Components/Header";
-import StateSelector from "./Components/StateSelector";
-import ActivitySelector from "./Components/ActivitySelector";
+import UserSelectors from "./Components/UserSelectors";
 import DisplayParkInfo from "./Components/DisplayParkInfo";
-import InputError from "./Components/InputError";
 import Footer from "./Components/Footer";
+import Error404 from "./Components/Error404";
+import ApiError from "./Components/ApiError";
 
 function App() {
   const [usersState, setUsersState] = useState("");
+  const [usersStateFull, setUsersStateFull] = useState("");
+  const [inputError, setInputError] = useState(false)
   const [activities, setActivities] = useState([]);
   const [parkInfo, setParkInfo] = useState([]);
-  const [inputMissing, setInputMissing] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   //stores usersState in stateful variable
   const handleStateSelection = (e) => {
-    setUsersState(e.target.value)
+    setUsersState(e.target.value);
+    setUsersStateFull(e.target.selectedOptions[0].label);
   };
 
   //adds/removes activities to the stateful activities arr as user clicks
@@ -31,20 +37,20 @@ function App() {
         return selection;
       } else {
         const selection = activities.filter((i) => {
-          return i.id !== e.target.value
+          return i.id !== e.target.value;
         });
         return selection;
       }
     })
-  }
+  };
 
-
-  const handleButton = () => {
+  const handleButton = (e) => {
+    e.preventDefault();
     if (usersState === "" || activities.length === 0) {
-      setInputMissing(true)
+      setInputError(true);
     } else {
-      setInputMissing(false)
-      getParkInfo()
+      getParkInfo();
+      navigate("/park-info");
     }
   };
 
@@ -58,9 +64,7 @@ function App() {
         method: "GET",
         dataResponse: "json",
         params: {
-          // api_key: "7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX",
-          //👆mine, 👇fake
-          api_key: "QAEc6W16eLjqeZ6Qd5VbExugf0AEYofsTOUG6XHG",
+          api_key: "7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX",
           id: activity.id,
         },
       })
@@ -74,38 +78,56 @@ function App() {
           })
 
           //format data with activity object
-          const result = [filteredParkList]
+          const result = [filteredParkList];
           result.unshift({ id: activity.id, name: activity.name });
 
           //combine each result from forEach loop into one final arr
           resultArr.push(result);
         }).catch(err => {
-          alert(`We couldn't find any places for you to touch grass. Please try again later. (${err.message})`)
+          navigate("/MIA");
         })
     })
     //save into stateful variable
     setTimeout(() => {
       setParkInfo(resultArr);
-    }, 1000)
-    // setUsersState("");
-    // setActivities([]);
-  }
+      setIsLoading(false);
+    }, 2000);
+  };
 
   return (
     <>
-        <Border />
-        <Header />
-        <main className="wrapper">
-          <StateSelector handleStateSelection={handleStateSelection} />
-          <ActivitySelector handleActivitySelection={handleActivitySelection} />
-          <button onClick={handleButton}>Your Adventure Awaits</button>
-          {inputMissing == true ? <InputError /> : null}
-          <DisplayParkInfo parkInfo={parkInfo} />
-        </main>
-        <Footer />
+      <Border />
+      <Header />
+      <main className="wrapper">
+        <Routes>
+          <Route path="/" element={
+            <UserSelectors
+              handleStateSelection={handleStateSelection}
+              handleActivitySelection={handleActivitySelection}
+              handleButton={handleButton}
+              inputError={inputError}
+            />
+          } />
+          <Route path="/park-info" element={
+            <DisplayParkInfo
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              parkInfo={parkInfo}
+              setParkInfo={setParkInfo}
+              setUsersState={setUsersState}
+              usersStateFull={usersStateFull}
+              setUsersStateFull={setUsersStateFull}
+              setActivities={setActivities}
+              setInputError={setInputError} />
+          } />
+          <Route path="/MIA" element={<ApiError />} />
+          <Route path="*" element={<Error404 />} />
+        </Routes>
+      </main>
+      <Footer />
     </>
   );
-}
+};
 
 export default App;
 
