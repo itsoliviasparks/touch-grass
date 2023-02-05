@@ -54,6 +54,16 @@ function App() {
     }
   };
 
+  //close button on all windows
+  const handleClose = () => {
+    setIsLoading(true)
+    setParkInfo([]);
+    setUsersState("");
+    setUsersStateFull("");
+    setActivities([]);
+    setInputError(false);
+  };
+
   // //when usersActivitySelection is updated, make API call using usersActivitySelection as params
   // //API DOCS: https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX
   const getParkInfo = () => {
@@ -118,10 +128,11 @@ function App() {
               usersStateFull={usersStateFull}
               setUsersStateFull={setUsersStateFull}
               setActivities={setActivities}
-              setInputError={setInputError} />
+              setInputError={setInputError}
+              handleClose={handleClose} />
           } />
-          <Route path="/MIA" element={<ApiError />} />
-          <Route path="*" element={<Error404 />} />
+          <Route path="/MIA" element={<ApiError handleClose={handleClose} />} />
+          <Route path="*" element={<Error404 handleClose={handleClose} />} />
         </Routes>
       </main>
       <Footer />
