@@ -8,19 +8,18 @@
 }
 
 .activity-card {
-    background-color: $tan;
     width: 47%;
     margin: 10px 0;
-    padding: 15px 25px;
     border-radius: 3px;
+    padding: 15px 25px;
+    background-color: $tan;
 }
 
 .park-list {
-    margin: 2.2rem 0;
+    margin: 2.2rem 0 0 1.5rem;
     li {
-        list-style-type: disc;
-        list-style-position: inside;
-        font-size: 2rem;
         color: $green;
+        font-size: 2rem;
+        list-style-type: disc;
     }
 }

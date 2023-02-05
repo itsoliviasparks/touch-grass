@@ -2,71 +2,71 @@
 
 //small desktops
 @media (max-width: 1240px) {
-    h2.state {
-        font-size: 3rem;
-        letter-spacing: 0.6rem;
-    }
+    //fonts
+    h2.state { font-size: 3rem; }
     h3 { font-size: 2.1rem; }
+    //user-selectors
     fieldset.activity-selector ul li { width: 25% }
 }
 
 //portrait tablet and small desktops
 @media (max-width: 1040px) {
+    //fonts
     h1 { font-size: 6.8rem; }
     h2 { font-size: 2.5rem; }
     h2.state { font-size: 2.5rem; }
-    h3 {
-        font-size: 1.9rem;
-        letter-spacing: 0.4rem;
-    }
+    h3 { font-size: 1.9rem; }
     header p {
         font-size: 2.3rem;
         &:first-child { font-size: 1.9rem; }
     }
     p,
-    a {
-        font-size: 1.7rem;
-        letter-spacing: 0.2rem;
-    }
+    a { font-size: 1.7rem; }
     label,
     legend,
     select,
-    button {
-        font-size: 1.8rem;
-    }
+    button { font-size: 1.8rem; }
+    //user-selectors
     fieldset.state-selector select { border-width: 3px; }
-    .loading i { font-size: 5rem; }
+    //loading
+    .loading i {
+        padding: 4px;
+        &:first-child,
+        &:nth-child(3){ font-size: 3rem; }
+    }
 }
 
 //landscape phone to portrait tablet
 @media (max-width: 940px) {
+    //fonts
     h1 { font-size: 6rem; }
     header p {
         font-size: 2.2rem;
+        letter-spacing: 0.7rem;
         &:first-child { font-size: 1.8rem; }
     }
     p,
-    a {
-        font-size: 1.5rem;
-        letter-spacing: 0.15rem;
-    }
+    a { font-size: 1.5rem; }
+    //user-selectors
     fieldset.activity-selector ul li { width: 33% }
+    //park-info
     .activity-card { width: 100%; }
 }
 
 //landscape phone to portrait tablet
 @media (max-width: 765px) {
+    //fonts
     h1 { font-size: 5rem; }
     header p {
         font-size: 2rem;
-        letter-spacing: 0.4rem;
+        letter-spacing: 0.5rem;
         &:first-child {
             font-size: 1.7rem;
+            letter-spacing: 0.4rem;
         }
-        &:last-child {
-            font-size: 1.3rem;
-        }
+        &:last-child { font-size: 1.3rem; }
     }
+    //layout
     header { margin: 45px 30px 27px 30px; }
     footer { margin: 45px 30px 20px 30px; }
     main { padding: 27px; }
@@ -76,17 +76,25 @@
         .top,
         .bottom { height:15px }
     }
+    //user-selectors
     fieldset.state-selector select { width: 100% }
     fieldset.activity-selector ul li {
         width: 50%;
         padding: 3px 3px;
     }
+    //loading
+    .loading i {
+        padding: 3px;
+        &:first-child,
+        &:nth-child(3){ font-size: 2rem; }
+    }
 }
 
 //landscape phones and down
 @media (max-width: 480px) {
+    //fonts
     h1 {
-        font-size: 3.2rem;
+        font-size: 3.6rem;
         letter-spacing: 0.6rem;
     }
     h2 { font-size: 2rem; }
@@ -103,12 +111,8 @@
     label,
     legend,
     select,
-    button {
-        font-size: 1.4rem;
-    }
+    button { font-size: 1.4rem; }
+    //park-info
     .activity-card { padding: 15px 15px; }
-    .park-list {
-        margin: 1rem 0;
-        li { font-size: 1.5rem; }
-    }
+    .park-list li { font-size: 1.5rem; }
 }

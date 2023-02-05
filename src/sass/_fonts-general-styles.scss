@@ -41,12 +41,12 @@ h1 {
 }
 
 h2{
+    color: $yellow;
+    padding-bottom: 2rem;
     font-size: 2.8rem;
     letter-spacing: 0.5rem;
-    color: $yellow;
 }
 
-h2 {padding-bottom: 2rem}
 
 h2.state {
     font-size: 4rem;
@@ -54,9 +54,9 @@ h2.state {
 }
 
 h3 {
+    color: $orange;
     font-size: 2.4rem;
     letter-spacing: 0.5rem;
-    color: $orange;
 }
 
 header p {
@@ -79,7 +79,7 @@ p,
 a {
     color: $green;
     font-size: 2.2rem;
-    letter-spacing: 0.4rem;
+    letter-spacing: 0.2rem;
     text-align: center;
     text-decoration: none;
 }
@@ -93,60 +93,59 @@ p.no-parks {
 }
 
 p.error {
-    color: $yellow;
     margin-bottom: 0;
+    color: $yellow;
 }
 
 footer p,
 footer a {
     font-size: 1rem;
+    letter-spacing: 0.1rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1rem;
 }
 
-footer a { text-decoration: underline; }
-
-//links
-a {
-    color: $green;
-    &:hover,
-    &:focus {
-        color: $orange;
-    }
-}
 
 //form fonts
 label,
 legend,
 select,
 button {
+    color: $tan;
     font-family: $body-font;
     font-size: 2rem;
-    color: $tan;
+    letter-spacing: 0.2rem;
 }
 
 select,
 button {
-    font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 0.4rem;
+    font-weight: 700;
     text-align: center;
+    text-transform: uppercase;
 }
+
+
+//links
+a {
+    color: $green;
+    &:hover,
+    &:focus { color: $orange; }
+}
+
+footer a { text-decoration: underline; }
 
 //buttons
 button {
     margin-top: 20px;
-    padding: 15px 25px;
     border: none;
     border-radius: 3px;
+    padding: 15px 25px;
     color: $green;
     background-color: $orange;
     transition: 0.2s;
     &:hover,
-    &:focus {
-        background-color: $yellow;
-    }
+    &:focus { background-color: $yellow; }
 }
 
 .close {
@@ -155,12 +154,8 @@ button {
     right: 15px;
     transition: 0.2s;
     i:hover,
-    i:focus {
-        color: $yellow;
-    }
+    i:focus { color: $yellow; }
 }
 
 //icons
-i {
-    color: $tan;
-}
+i { color: $tan; }
