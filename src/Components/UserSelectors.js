@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import InputError from "./InputError";
 
 const UserSelectors = ({ handleStateSelection, handleActivitySelection, handleButton, inputError }) => {
