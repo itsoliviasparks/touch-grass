@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import CloseButton from "./CloseButton";
 import Loading from "./Loading";
 
 const DisplayParkInfo =
@@ -8,16 +8,13 @@ const DisplayParkInfo =
         usersStateFull,
         handleClose
     }) => {
-        
+
         return (
             <>
                 {/* conditionally show section depending on loading state */}
-                {isLoading ? <Loading handleClose={handleClose}/> : (
+                {isLoading ? <Loading handleClose={handleClose} /> : (
                     <section className="park-info">
-                        <Link to="/" className="close" onClick={handleClose}>
-                            <p className="sr-only">To Home</p>
-                            <i className="fa-solid fa-circle-xmark"></i>
-                        </Link>
+                        <CloseButton handleClose={handleClose}/>
                         <h2 className="state">{usersStateFull}</h2>
                         <ul className="info">
                             {
@@ -41,7 +38,14 @@ const DisplayParkInfo =
                                                         arr[1].map((park) => {
                                                             return (
                                                                 <li className="park" key={park.parkCode}>
-                                                                    <a href={park.url} target="_blank" rel="noreferrer">{park.name}</a>
+                                                                    <div className="park-name">
+                                                                        <i className="fa-solid fa-circle"></i>
+                                                                        <p>{park.name}</p>
+                                                                    </div>
+                                                                    <a href={park.url} target="_blank" rel="noreferrer" className="park-info-link">
+                                                                        <i className="fa-solid fa-info"></i>
+                                                                        <p className="sr-only">Park Info Link</p>
+                                                                    </a>
                                                                 </li>
                                                             )
                                                         })

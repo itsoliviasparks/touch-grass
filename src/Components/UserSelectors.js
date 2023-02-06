@@ -1,6 +1,13 @@
 import InputError from "./InputError";
 
-const UserSelectors = ({ handleStateSelection, handleActivitySelection, handleButton, inputError }) => {
+const UserSelectors =
+    ({
+        handleStateSelection,
+        handleActivitySelection,
+        handleButton,
+        inputError
+    }) => {
+        
     const activityIds = [
         { id: "BFF8C027-7C8F-480B-A5F8-CD8CE490BFBA", name: "Hiking" },
         { id: "A59947B7-3376-49B4-AD02-C0423E08C5F7", name: "Camping" },

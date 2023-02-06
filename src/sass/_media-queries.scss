@@ -26,6 +26,8 @@
     legend,
     select,
     button { font-size: 1.8rem; }
+    .park-info-link i { font-size: 1.5rem; }
+    .park-name i { font-size: 0.6rem; }
     //user-selectors
     fieldset.state-selector select { border-width: 3px; }
     //loading
@@ -47,6 +49,8 @@
     }
     p,
     a { font-size: 1.5rem; }
+    .park-info-link i { font-size: 1.4rem; }
+    .park-name i { font-size: 0.5rem; }
     //user-selectors
     fieldset.activity-selector ul li { width: 33% }
     //park-info

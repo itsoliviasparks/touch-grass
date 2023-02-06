@@ -80,12 +80,17 @@ a {
     color: $green;
     font-size: 2.2rem;
     letter-spacing: 0.2rem;
-    text-align: center;
     text-decoration: none;
 }
 
 a:hover,
 a:focus { text-decoration: underline; }
+
+.park-name p:hover,
+.park-name p:focus {
+    color: $orange;
+    text-decoration: underline;
+}
 
 p.no-parks {
     font-weight: 700;
@@ -102,6 +107,7 @@ footer a {
     font-size: 1rem;
     letter-spacing: 0.1rem;
     font-weight: 700;
+    text-align: center;
     text-transform: uppercase;
 }
 
@@ -152,10 +158,19 @@ button {
     position: absolute;
     top: 15px;
     right: 15px;
+    color: $tan;
     transition: 0.2s;
     i:hover,
     i:focus { color: $yellow; }
 }
 
 //icons
-i { color: $tan; }
+.park i { color: $green; }
+
+.park-info-link i {
+    font-size: 1.8rem;
+    transition: 0.2s;
+    &:hover,
+    &:focus { color: $orange; }
+}
+.park-name i { font-size: 0.8rem; }
