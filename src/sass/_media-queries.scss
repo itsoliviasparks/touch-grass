@@ -128,3 +128,24 @@
     .activity-card { padding: 15px 15px; }
     .park-list li { font-size: 1.5rem; }
 }
+
+//landscape phones and down
+@media (max-width: 320px) {
+    //fonts
+    h1 {
+        font-size: 2.4rem;
+        letter-spacing: 0.3rem;
+    }
+    h2 {
+        padding: 10px 0;
+        font-size: 1.7rem;
+        letter-spacing: 0.3rem;
+    }
+    label,
+    legend,
+    select,
+    button { font-size: 1.2rem; }
+    //user-selectors
+    fieldset.state-selector select { margin-bottom: 10px }
+
+}
