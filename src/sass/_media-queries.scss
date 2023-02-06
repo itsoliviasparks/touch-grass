@@ -1,6 +1,6 @@
 @use "_variables.scss" as *;
 
-//small desktops
+//desktops
 @media (max-width: 1240px) {
     //fonts
     h2.state { font-size: 3rem; }
@@ -9,7 +9,7 @@
     fieldset.activity-selector ul li { width: 25% }
 }
 
-//portrait tablet and small desktops
+//small desktops
 @media (max-width: 1040px) {
     //fonts
     h1 { font-size: 6.8rem; }
@@ -36,7 +36,7 @@
     }
 }
 
-//landscape phone to portrait tablet
+//portrait tablet
 @media (max-width: 940px) {
     //fonts
     h1 { font-size: 6rem; }
@@ -53,7 +53,7 @@
     .activity-card { width: 100%; }
 }
 
-//landscape phone to portrait tablet
+//landscape phone
 @media (max-width: 765px) {
     //fonts
     h1 {
@@ -96,7 +96,7 @@
     }
 }
 
-//landscape phones and down
+//portrait phones
 @media (max-width: 480px) {
     //fonts
     h1 {
@@ -129,7 +129,7 @@
     .park-list li { font-size: 1.5rem; }
 }
 
-//landscape phones and down
+//smallest phone
 @media (max-width: 320px) {
     //fonts
     h1 {
@@ -147,5 +147,4 @@
     button { font-size: 1.2rem; }
     //user-selectors
     fieldset.state-selector select { margin-bottom: 10px }
-
 }

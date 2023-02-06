@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import Loading from "./Loading";
 
-// gets past parkInfo as props
 const DisplayParkInfo =
     ({
         isLoading,
@@ -12,6 +11,7 @@ const DisplayParkInfo =
         
         return (
             <>
+                {/* conditionally show section depending on loading state */}
                 {isLoading ? <Loading handleClose={handleClose}/> : (
                     <section className="park-info">
                         <Link to="/" className="close" onClick={handleClose}>
@@ -31,7 +31,7 @@ const DisplayParkInfo =
                                                 <p className="no-parks">There are no parks with this activity</p>
                                             </li>
                                         )
-                                        //otherwise, return list os all the parks    
+                                        //otherwise, return list of all the parks    
                                     } else {
                                         return (
                                             <li className="activity-card" key={arr[0].id}>
