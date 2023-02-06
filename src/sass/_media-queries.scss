@@ -30,7 +30,7 @@
     fieldset.state-selector select { border-width: 3px; }
     //loading
     .loading i {
-        padding: 4px;
+        font-size: 5rem;
         &:first-child,
         &:nth-child(3){ font-size: 3rem; }
     }
@@ -56,20 +56,26 @@
 //landscape phone to portrait tablet
 @media (max-width: 765px) {
     //fonts
-    h1 { font-size: 5rem; }
+    h1 {
+        margin: 0;
+        font-size: 5rem;
+    }
     header p {
-        font-size: 2rem;
-        letter-spacing: 0.5rem;
+        font-size: 1.7rem;
+        letter-spacing: 0.2rem;
         &:first-child {
-            font-size: 1.7rem;
-            letter-spacing: 0.4rem;
+            font-size: 1.3rem;
+            letter-spacing: 0.2rem;
         }
-        &:last-child { font-size: 1.3rem; }
+        &:last-child {
+            font-size: 1rem;
+            letter-spacing: 0.1rem;
+        }
     }
     //layout
     header { margin: 45px 30px 27px 30px; }
     footer { margin: 45px 30px 20px 30px; }
-    main { padding: 27px; }
+    main { padding: 20px; }
     .border-container {
         .right,
         .left { width: 15px; }
@@ -84,7 +90,7 @@
     }
     //loading
     .loading i {
-        padding: 3px;
+        font-size: 3rem;
         &:first-child,
         &:nth-child(3){ font-size: 2rem; }
     }
@@ -94,10 +100,14 @@
 @media (max-width: 480px) {
     //fonts
     h1 {
-        font-size: 3.6rem;
-        letter-spacing: 0.6rem;
+        font-size: 2.8rem;
+        letter-spacing: 0.4rem;
     }
-    h2 { font-size: 2rem; }
+    h2 {
+        padding: 20px 0;
+        font-size: 1.8rem;
+        letter-spacing: 0.4rem;
+    }
     h3 {
         font-size: 1.7rem;
         letter-spacing: 0.3rem;
@@ -112,6 +122,8 @@
     legend,
     select,
     button { font-size: 1.4rem; }
+    //general styles
+    .wrapper { width: 85%; }
     //park-info
     .activity-card { padding: 15px 15px; }
     .park-list li { font-size: 1.5rem; }
