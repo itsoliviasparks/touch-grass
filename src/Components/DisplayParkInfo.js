@@ -13,10 +13,14 @@ const DisplayParkInfo =
         handleClose
     }) => {
 
-        const handleAdd = (e) => {
-            e.preventDefault();
-            console.log(e.target)
-            const toDoItem = e  .value;
+        const handleAdd = (park, activity ) => {
+            //toDoItem to send to database
+            const toDoItem = {
+                activity: activity.name,
+                isDone: false,
+                park: park.name,
+                url: park.url,
+            };
             const database = getDatabase(firebase);
             const dbRef = ref(database);
             push(dbRef, toDoItem);
@@ -51,17 +55,10 @@ const DisplayParkInfo =
                                                 <ul className="park-list">
                                                     {
                                                         arr[1].map((park) => {
-                                                            //toDoItem to send to database
-                                                            const toDoItem = {
-                                                                activity: arr[0].name,
-                                                                isDone: false,
-                                                                park: park.name,
-                                                                url: park.url,
-                                                            };
                                                             return (
                                                                 <li className="park" key={park.parkCode}>
                                                                     <div className="park-name">
-                                                                        <button className="to-do-button" onClick={handleAdd} value={toDoItem}>
+                                                                        <button className="to-do-button" onClick={() => {handleAdd(park, arr[0])}}>
                                                                             <i className="fa-solid fa-circle"></i>
                                                                         </button>
                                                                             <p>{park.name}</p>

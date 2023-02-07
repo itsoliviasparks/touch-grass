@@ -22,10 +22,9 @@ const DisplayToDos = ({ handleClose }) => {
         })
     }, []);
 
-    // console.log(toDos)
-    const handleAddToVisited = (e) => {
-        const toDoItem = e.target.id;
-        const isDone = e.target.value;
+
+    const handleAddButton= (e) => {
+        console.log(e);
 
     };
 
@@ -49,7 +48,7 @@ const DisplayToDos = ({ handleClose }) => {
                                         <li key={toDo.key}>
                                             <div className="park-name">
                                                 <div className="buttons">
-                                                    <button className="to-do-button">
+                                                    <button className="to-do-button" onClick={handleAddButton}>
                                                         <i className="fa-solid fa-circle-check"></i>
                                                     </button>
                                                     <button className="to-do-button">
