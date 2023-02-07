@@ -96,7 +96,6 @@ function App() {
         return result
       })
     };
-
     activities.forEach((activity) => {
       resultArr.push(fetchData(activity))
     })
@@ -108,10 +107,6 @@ function App() {
     }).catch(() => {
       navigate("/MIA");
     })
-  };
-
-  const addToDo = () => {
-
   };
 
   return (

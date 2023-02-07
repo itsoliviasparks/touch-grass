@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import firebase from "../firebase";
-import { getDatabase, ref, onValue, push } from 'firebase/database';
+import { getDatabase, ref, onValue, update, remove } from 'firebase/database';
 
 import CloseButton from "./CloseButton";
 
@@ -23,18 +23,33 @@ const DisplayToDos = ({ handleClose }) => {
     }, []);
 
 
-    const handleAddButton= (e) => {
-        console.log(e);
+    const handleVisitedButton = (toDo) => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `/${toDo.key}`);
+        return update(dbRef, {isDone: true})
+    };
 
+    const handleDeleteButton = (toDo) => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `/${toDo.key}`);
+        remove(dbRef);
+    };
+
+    const handleUnvisitedButton = (toDo) => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `/${toDo.key}`);
+        return update(dbRef, {isDone: false})
     };
 
     return (
         <section className="field-notes">
             <CloseButton handleClose={handleClose} />
             <h3>Field Notes</h3>
-            <p className="instruction">Please select <i className="fa-solid fa-circle-check"></i> to mark as visited</p>
-            <p className="instruction">Please select <i className="fa-solid fa-circle-xmark"></i> to remove from your Field Notes</p>
-            <p className="instruction">Please select <i className="fa-solid fa-info"></i> for additional park information</p>
+            <p className="instruction">How to write your Field Notes:</p>
+            <p className="instruction"><i className="fa-solid fa-circle-check"></i> marks the activity as visited</p>
+            <p className="instruction"><i className="fa-solid fa-circle-xmark"></i> removes the activity from your Field Notes</p>
+            <p className="instruction"><i className="fa-solid fa-circle-arrow-left"></i> moves the activity from <em>Visited</em> and into <em>Plan For Your Visit</em></p>
+            <p className="instruction"><i className="fa-solid fa-info"></i> navigates to the U. S. National Park's official website</p>
             <div className="to-do-cards">
                 <div className="to-do card">
                     <h4>Plan For Your Visit</h4>
@@ -48,10 +63,10 @@ const DisplayToDos = ({ handleClose }) => {
                                         <li key={toDo.key}>
                                             <div className="park-name">
                                                 <div className="buttons">
-                                                    <button className="to-do-button" onClick={handleAddButton}>
+                                                    <button className="to-do-button" onClick={() => handleVisitedButton(toDo)}>
                                                         <i className="fa-solid fa-circle-check"></i>
                                                     </button>
-                                                    <button className="to-do-button">
+                                                    <button className="to-do-button" onClick={() => handleDeleteButton(toDo)}>
                                                         <i className="fa-solid fa-circle-xmark"></i>
                                                     </button>
                                                 </div>
@@ -80,8 +95,8 @@ const DisplayToDos = ({ handleClose }) => {
                                         <li key={toDo.key}>
                                             <div className="park-name">
                                                 <div className="buttons">
-                                                    <button className="to-do-button">
-                                                        <i className="fa-solid fa-circle-xmark"></i>
+                                                    <button className="to-do-button" onClick={() => handleUnvisitedButton(toDo)}>
+                                                        <i className="fa-solid fa-circle-arrow-left"></i>
                                                     </button>
                                                 </div>
                                                 <p className="done"><span>{toDo.data.park}</span>: {toDo.data.activity}</p>

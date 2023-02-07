@@ -13,6 +13,7 @@ const DisplayParkInfo =
         handleClose
     }) => {
 
+        //when click on button, the activity is added to the database as a toDoItem object
         const handleAdd = (park, activity ) => {
             //toDoItem to send to database
             const toDoItem = {
@@ -86,13 +87,3 @@ const DisplayParkInfo =
     };
 
 export default DisplayParkInfo;
-
-
-//when click on button, we add to data base
-//item to add to data base is an object:
-// {
-//     activity:
-//     isDone:
-//     park:
-//     state:
-// }
