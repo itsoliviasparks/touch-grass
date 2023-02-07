@@ -1,0 +1,7 @@
+@use "_variables.scss" as *;
+
+.to-do-cards {
+    display: flex;
+    justify-content: space-between;
+    .card {width: 47%;}
+}

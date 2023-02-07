@@ -5,14 +5,12 @@ import axios from "axios";
 
 import "./App.scss";
 
-import firebase from "./firebase";
-
 import Border from "./Components/Border";
 import Header from "./Components/Header";
 import UserSelectors from "./Components/UserSelectors";
 import DisplayParkInfo from "./Components/DisplayParkInfo";
 import FieldNotesButton from "./Components/FieldNotesButton";
-import FieldNotes from "./Components/FieldNotes";
+import DisplayToDos from "./Components/DisplayToDos";
 import Footer from "./Components/Footer";
 import ApiError from "./Components/ApiError";
 import Error404 from "./Components/Error404";
@@ -109,6 +107,10 @@ function App() {
     }, 2000);
   };
 
+  const addToDo = () => {
+
+  };
+
   return (
     <>
       <Border />
@@ -136,7 +138,7 @@ function App() {
               setInputError={setInputError}
               handleClose={handleClose} />
           } />
-          <Route path="/field-notes" element={<FieldNotes handleClose={handleClose} />} />
+          <Route path="/field-notes" element={<DisplayToDos handleClose={handleClose} />} />
           <Route path="/MIA" element={<ApiError handleClose={handleClose} />} />
           <Route path="*" element={<Error404 handleClose={handleClose} />} />
         </Routes>

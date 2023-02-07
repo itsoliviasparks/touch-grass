@@ -23,7 +23,7 @@ const DisplayParkInfo =
                                     if (arr[1].length === 0) {
                                         return (
                                             <li
-                                                className="activity-card" key={arr[0].id}>
+                                                className="card" key={arr[0].id}>
                                                 <h3>{arr[0].name}</h3>
                                                 <p className="no-parks">There are no parks with this activity</p>
                                             </li>
@@ -31,7 +31,7 @@ const DisplayParkInfo =
                                         //otherwise, return list of all the parks    
                                     } else {
                                         return (
-                                            <li className="activity-card" key={arr[0].id}>
+                                            <li className="card" key={arr[0].id}>
                                                 <h3>{arr[0].name}</h3>
                                                 <ul className="park-list">
                                                     {
