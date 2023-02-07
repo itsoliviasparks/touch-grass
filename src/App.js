@@ -9,6 +9,7 @@ import Border from "./Components/Border";
 import Header from "./Components/Header";
 import UserSelectors from "./Components/UserSelectors";
 import DisplayParkInfo from "./Components/DisplayParkInfo";
+import DisplayToDos from "./Components/DisplayToDos";
 import Footer from "./Components/Footer";
 import ApiError from "./Components/ApiError";
 import Error404 from "./Components/Error404";
@@ -22,6 +23,7 @@ function App() {
   const [parkInfo, setParkInfo] = useState([]);
 
   const navigate = useNavigate();
+  const apiKey = "7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX";
 
   //stores usersState in stateful variable
   const handleStateSelection = (e) => {
@@ -65,44 +67,46 @@ function App() {
     setInputError(false);
   };
 
-  // /API call using activities as params. Filters results by usersState
-  // //API DOCS: https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX
   const getParkInfo = () => {
     const resultArr = [];
-    activities.forEach((activity) => {
-      axios({
+      // /API call using activities as params. Filters results by usersState
+      // //API DOCS: https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX
+    const fetchData = (activity) => {
+      return axios({
         url: "https://developer.nps.gov/api/v1/activities/parks",
         method: "GET",
         dataResponse: "json",
         params: {
-          api_key: "7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX",
+          api_key: apiKey,
           id: activity.id,
         },
-      })
-        .then((res) => {
-          //each res is an object containing a park list for all parks nationally with that activity
-          const parkList = res.data.data[0].parks;
+      }).then((res) => {
+        // //each res is an object containing a park list for all parks nationally with that activity
+        const parkList = res.data.data[0].parks;
 
-          //filter out all parks that are not in the usersState. Returned arr does not have activity object
-          const filteredParkList = parkList.filter((park) => {
-            return park.states === usersState;
-          })
-
-          //format data with activity object
-          const result = [filteredParkList];
-          result.unshift({ id: activity.id, name: activity.name });
-
-          //combine each result from forEach loop into one final arr
-          resultArr.push(result);
-        }).catch(err => {
-          navigate("/MIA");
+        // //filter out all parks that are not in the usersState. Returned arr does not have activity object
+        const filteredParkList = parkList.filter((park) => {
+          return park.states === usersState;
         })
+
+        // //format data with activity object
+        const result = [filteredParkList];
+        result.unshift({ id: activity.id, name: activity.name });
+
+        return result
+      })
+    };
+    activities.forEach((activity) => {
+      resultArr.push(fetchData(activity))
     })
-    //save into stateful variable
-    setTimeout(() => {
-      setParkInfo(resultArr);
+
+    //save result into stateful variable & turn off loading state
+    Promise.all(resultArr).then((res) => {
+      setParkInfo(res);
       setIsLoading(false);
-    }, 2000);
+    }).catch(() => {
+      navigate("/MIA");
+    })
   };
 
   return (
@@ -132,6 +136,7 @@ function App() {
               setInputError={setInputError}
               handleClose={handleClose} />
           } />
+          <Route path="/field-notes" element={<DisplayToDos handleClose={handleClose} />} />
           <Route path="/MIA" element={<ApiError handleClose={handleClose} />} />
           <Route path="*" element={<Error404 handleClose={handleClose} />} />
         </Routes>
@@ -142,9 +147,6 @@ function App() {
 };
 
 export default App;
-
-
-// ❌❌Problem- API call is updating state with each loop, we need to wait until all loops are done to update.❌❌
 
 //on app mount
 //user select states, from list (or from interactive map- stretch goal)

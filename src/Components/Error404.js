@@ -1,14 +1,11 @@
-import { Link } from "react-router-dom"
+import CloseButton from "./CloseButton";
 
 const Error404 = ({ handleClose }) => {
     return (
         <>
-            <Link to="/" className="close" onClick={handleClose}>
-                <p className="sr-only">To Home</p>
-                <i className="fa-solid fa-circle-xmark"></i>
-            </Link>
-            <h2>404</h2>
-            <h3>Lost in the Woods</h3>
+            <CloseButton handleClose={handleClose}/>
+            <h3>404</h3>
+            <h4>Lost in the Woods</h4>
         </>
     );
 };

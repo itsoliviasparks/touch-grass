@@ -1,15 +1,12 @@
-import { Link } from "react-router-dom"
+import CloseButton from "./CloseButton";
 
 const ApiError = ({ handleClose }) => {
     return (
         <>
-            <Link to="/" className="close" onClick={handleClose}>
-                <p className="sr-only">To Home</p>
-                <i className="fa-solid fa-circle-xmark"></i>
-            </Link>
-            <h2>M.I.A</h2>
-            <h3>U.S. National Park Service Data is missing in action</h3>
-            <h3>Please try again</h3>
+            <CloseButton handleClose={handleClose}/>
+            <h3>M.I.A</h3>
+            <h4>U.S. National Park Service Data is missing in action</h4>
+            <h4>Please try again</h4>
         </>
     );
 };

@@ -1,5 +1,9 @@
-import { Link } from "react-router-dom"
+import firebase from "../firebase";
+import { getDatabase, ref, push } from 'firebase/database';
+
+import CloseButton from "./CloseButton";
 import Loading from "./Loading";
+import FieldNotesButton from "./FieldNotesButton";
 
 const DisplayParkInfo =
     ({
@@ -8,17 +12,30 @@ const DisplayParkInfo =
         usersStateFull,
         handleClose
     }) => {
-        
+
+        //when click on button, the activity is added to the database as a toDoItem object
+        const handleAdd = (park, activity ) => {
+            //toDoItem to send to database
+            const toDoItem = {
+                activity: activity.name,
+                isDone: false,
+                park: park.name,
+                url: park.url,
+            };
+            const database = getDatabase(firebase);
+            const dbRef = ref(database);
+            push(dbRef, toDoItem);
+        };
+
         return (
             <>
                 {/* conditionally show section depending on loading state */}
-                {isLoading ? <Loading handleClose={handleClose}/> : (
+                {isLoading ? <Loading handleClose={handleClose} /> : (
                     <section className="park-info">
-                        <Link to="/" className="close" onClick={handleClose}>
-                            <p className="sr-only">To Home</p>
-                            <i className="fa-solid fa-circle-xmark"></i>
-                        </Link>
-                        <h2 className="state">{usersStateFull}</h2>
+                        <CloseButton handleClose={handleClose} />
+                        <h3>{usersStateFull}</h3>
+                        <p className="instruction">Please select {<i className="fa-solid fa-circle"></i>} to add to your Field Notes</p>
+                        <p className="instruction">Please select <i className="fa-solid fa-info"></i> for additional park information</p>
                         <ul className="info">
                             {
                                 parkInfo.map(arr => {
@@ -26,22 +43,31 @@ const DisplayParkInfo =
                                     if (arr[1].length === 0) {
                                         return (
                                             <li
-                                                className="activity-card" key={arr[0].id}>
-                                                <h3>{arr[0].name}</h3>
+                                                className="card" key={arr[0].id}>
+                                                <h4>{arr[0].name}</h4>
                                                 <p className="no-parks">There are no parks with this activity</p>
                                             </li>
                                         )
                                         //otherwise, return list of all the parks    
                                     } else {
                                         return (
-                                            <li className="activity-card" key={arr[0].id}>
-                                                <h3>{arr[0].name}</h3>
+                                            <li className="card" key={arr[0].id}>
+                                                <h4>{arr[0].name}</h4>
                                                 <ul className="park-list">
                                                     {
                                                         arr[1].map((park) => {
                                                             return (
                                                                 <li className="park" key={park.parkCode}>
-                                                                    <a href={park.url} target="_blank" rel="noreferrer">{park.name}</a>
+                                                                    <div className="park-name">
+                                                                        <button className="to-do-button" onClick={() => {handleAdd(park, arr[0])}}>
+                                                                            <i className="fa-solid fa-circle"></i>
+                                                                        </button>
+                                                                            <p>{park.name}</p>
+                                                                    </div>
+                                                                    <a href={park.url} target="_blank" rel="noreferrer" className="park-info-link">
+                                                                        <i className="fa-solid fa-info"></i>
+                                                                        <p className="sr-only">Park Info Link</p>
+                                                                    </a>
                                                                 </li>
                                                             )
                                                         })
@@ -53,6 +79,7 @@ const DisplayParkInfo =
                                 })
                             }
                         </ul>
+                        <FieldNotesButton />
                     </section>
                 )}
             </>

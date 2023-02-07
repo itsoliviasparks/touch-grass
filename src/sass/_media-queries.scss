@@ -3,8 +3,8 @@
 //desktops
 @media (max-width: 1240px) {
     //fonts
-    h2.state { font-size: 3rem; }
-    h3 { font-size: 2.1rem; }
+    h3 { font-size: 3rem; }
+    h4 { font-size: 2.1rem; }
     //user-selectors
     fieldset.activity-selector ul li { width: 25% }
 }
@@ -14,18 +14,15 @@
     //fonts
     h1 { font-size: 6.8rem; }
     h2 { font-size: 2.5rem; }
-    h2.state { font-size: 2.5rem; }
-    h3 { font-size: 1.9rem; }
+    h4 { font-size: 1.9rem; }
     header p {
         font-size: 2.3rem;
         &:first-child { font-size: 1.9rem; }
     }
     p,
     a { font-size: 1.7rem; }
-    label,
-    legend,
-    select,
-    button { font-size: 1.8rem; }
+    //icons
+    i.fa-info { font-size: 1.5rem; }
     //user-selectors
     fieldset.state-selector select { border-width: 3px; }
     //loading
@@ -47,10 +44,14 @@
     }
     p,
     a { font-size: 1.5rem; }
+    //icons
+    i.fa-info { font-size: 1.4rem; }
     //user-selectors
     fieldset.activity-selector ul li { width: 33% }
-    //park-info
-    .activity-card { width: 100%; }
+    //cards
+    .card,
+    .to-do-cards .card { width: 100%; }
+
 }
 
 //landscape phone
@@ -60,6 +61,7 @@
         margin: 0;
         font-size: 5rem;
     }
+    h3 { font-size: 2.5rem; }
     header p {
         font-size: 1.7rem;
         letter-spacing: 0.2rem;
@@ -108,11 +110,11 @@
         font-size: 1.8rem;
         letter-spacing: 0.4rem;
     }
-    h3 {
+    h4 {
         font-size: 1.7rem;
         letter-spacing: 0.3rem;
     }
-    h2.state { font-size: 2.2rem; }
+    h3 { font-size: 2.2rem; }
     p,
     a {
         font-size: 1.5rem;
@@ -142,6 +144,7 @@
         font-size: 1.7rem;
         letter-spacing: 0.3rem;
     }
+    h3 { font-size: 2rem; }
     label,
     legend,
     select,
