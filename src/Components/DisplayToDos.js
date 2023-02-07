@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import firebase from "../firebase";
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { getDatabase, ref, onValue, push } from 'firebase/database';
 
 import CloseButton from "./CloseButton";
 
@@ -12,34 +12,53 @@ const DisplayToDos = ({ handleClose }) => {
         const database = getDatabase(firebase);
         const dbRef = ref(database);
         onValue(dbRef, (res) => {
-            setToDos(res.val());
+            const responseArr = [];
+            const response = res.val();
+            //change object response from firebase into an array
+            for (let key in response) {
+                responseArr.push({ key: key, data: response[key] });
+            }
+            setToDos(responseArr);
         })
     }, []);
+
+    // console.log(toDos)
+    const handleAddToVisited = (e) => {
+        const toDoItem = e.target.id;
+        const isDone = e.target.value;
+
+    };
 
     return (
         <section className="field-notes">
             <CloseButton handleClose={handleClose} />
             <h3>Field Notes</h3>
-            <p className="main">Please select <i className="fa-solid fa-circle-check"></i> to mark as completed</p>
-            <p className="main">Please select <i className="fa-solid fa-circle-xmark"></i> to remove from your Field Notes</p>
-            <p className="main">Please select <i className="fa-solid fa-info"></i> for additional park information</p>
+            <p className="instruction">Please select <i className="fa-solid fa-circle-check"></i> to mark as visited</p>
+            <p className="instruction">Please select <i className="fa-solid fa-circle-xmark"></i> to remove from your Field Notes</p>
+            <p className="instruction">Please select <i className="fa-solid fa-info"></i> for additional park information</p>
             <div className="to-do-cards">
                 <div className="to-do card">
                     <h4>Plan For Your Visit</h4>
                     <ul>
                         {
-                            toDos.map(({ isDone, park, state, activity }, i) => {
-                                if (isDone === true) {
+                            toDos.map((toDo) => {
+                                if (toDo.data.isDone === true) {
                                     return null
                                 } else {
                                     return (
-                                        <li key={i}>
+                                        <li key={toDo.key}>
                                             <div className="park-name">
-                                                <i className="fa-solid fa-circle-check"></i>
-                                                <i className="fa-solid fa-circle-xmark"></i>
-                                                <p>{park}, {state}: {activity}</p>
+                                                <div className="buttons">
+                                                    <button className="to-do-button">
+                                                        <i className="fa-solid fa-circle-check"></i>
+                                                    </button>
+                                                    <button className="to-do-button">
+                                                        <i className="fa-solid fa-circle-xmark"></i>
+                                                    </button>
+                                                </div>
+                                                <p><span>{toDo.data.park}</span>: {toDo.data.activity}</p>
                                             </div>
-                                            <a href="#" target="_blank" rel="noreferrer" className="park-info-link">
+                                            <a href={toDo.data.url} target="_blank" rel="noreferrer" className="park-info-link">
                                                 <i className="fa-solid fa-info"></i>
                                                 <p className="sr-only">Park Info Link</p>
                                             </a>
@@ -54,17 +73,21 @@ const DisplayToDos = ({ handleClose }) => {
                     <h4>Visited</h4>
                     <ul>
                         {
-                            toDos.map(({ isDone, park, state, activity }, i) => {
-                                if (isDone === false) {
+                            toDos.map((toDo) => {
+                                if (toDo.data.isDone === false) {
                                     return null
                                 } else {
                                     return (
-                                        <li key={i}>
+                                        <li key={toDo.key}>
                                             <div className="park-name">
-                                                <i className="fa-solid fa-circle-xmark"></i>
-                                                <p className="done">{park}, {state}: {activity}</p>
+                                                <div className="buttons">
+                                                    <button className="to-do-button">
+                                                        <i className="fa-solid fa-circle-xmark"></i>
+                                                    </button>
+                                                </div>
+                                                <p className="done"><span>{toDo.data.park}</span>: {toDo.data.activity}</p>
                                             </div>
-                                            <a href="#" target="_blank" rel="noreferrer" className="park-info-link">
+                                            <a href={toDo.data.url} target="_blank" rel="noreferrer" className="park-info-link">
                                                 <i className="fa-solid fa-info"></i>
                                                 <p className="sr-only">Park Info Link</p>
                                             </a>

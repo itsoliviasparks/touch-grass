@@ -23,13 +23,6 @@
     a { font-size: 1.7rem; }
     //icons
     i.fa-info { font-size: 1.5rem; }
-    i {
-        font-size: 0.6rem;
-        &:hover,
-        &:focus {
-            font-size: 1.6rem;
-        }
-    }
     //user-selectors
     fieldset.state-selector select { border-width: 3px; }
     //loading
@@ -53,13 +46,6 @@
     a { font-size: 1.5rem; }
     //icons
     i.fa-info { font-size: 1.4rem; }
-    i {
-        font-size: 0.5rem;
-        &:hover,
-        &:focus {
-            font-size: 1.5rem;
-        }
-    }
     //user-selectors
     fieldset.activity-selector ul li { width: 33% }
     //cards
@@ -88,10 +74,6 @@
             letter-spacing: 0.1rem;
         }
     }
-    //icons
-    i,
-    i:hover,
-    i:focus { font-size: 1.4rem; }
     //layout
     header { margin: 45px 30px 27px 30px; }
     footer { margin: 45px 30px 20px 30px; }

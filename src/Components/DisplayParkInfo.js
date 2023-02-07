@@ -1,3 +1,6 @@
+import firebase from "../firebase";
+import { getDatabase, ref, push } from 'firebase/database';
+
 import CloseButton from "./CloseButton";
 import Loading from "./Loading";
 import FieldNotesButton from "./FieldNotesButton";
@@ -10,15 +13,24 @@ const DisplayParkInfo =
         handleClose
     }) => {
 
+        const handleAdd = (e) => {
+            e.preventDefault();
+            console.log(e.target)
+            const toDoItem = e  .value;
+            const database = getDatabase(firebase);
+            const dbRef = ref(database);
+            push(dbRef, toDoItem);
+        };
+
         return (
             <>
                 {/* conditionally show section depending on loading state */}
                 {isLoading ? <Loading handleClose={handleClose} /> : (
                     <section className="park-info">
-                        <CloseButton handleClose={handleClose}/>
+                        <CloseButton handleClose={handleClose} />
                         <h3>{usersStateFull}</h3>
-                        <p className="main">Please select <i className="fa-solid fa-circle"></i> to add to your Field Notes</p>
-                        <p className="main">Please select <i className="fa-solid fa-info"></i> for additional park information</p>
+                        <p className="instruction">Please select {<i className="fa-solid fa-circle"></i>} to add to your Field Notes</p>
+                        <p className="instruction">Please select <i className="fa-solid fa-info"></i> for additional park information</p>
                         <ul className="info">
                             {
                                 parkInfo.map(arr => {
@@ -39,11 +51,20 @@ const DisplayParkInfo =
                                                 <ul className="park-list">
                                                     {
                                                         arr[1].map((park) => {
+                                                            //toDoItem to send to database
+                                                            const toDoItem = {
+                                                                activity: arr[0].name,
+                                                                isDone: false,
+                                                                park: park.name,
+                                                                url: park.url,
+                                                            };
                                                             return (
                                                                 <li className="park" key={park.parkCode}>
                                                                     <div className="park-name">
-                                                                        <i className="fa-solid fa-circle"></i>
-                                                                        <p>{park.name}</p>
+                                                                        <button className="to-do-button" onClick={handleAdd} value={toDoItem}>
+                                                                            <i className="fa-solid fa-circle"></i>
+                                                                        </button>
+                                                                            <p>{park.name}</p>
                                                                     </div>
                                                                     <a href={park.url} target="_blank" rel="noreferrer" className="park-info-link">
                                                                         <i className="fa-solid fa-info"></i>
@@ -68,3 +89,13 @@ const DisplayParkInfo =
     };
 
 export default DisplayParkInfo;
+
+
+//when click on button, we add to data base
+//item to add to data base is an object:
+// {
+//     activity:
+//     isDone:
+//     park:
+//     state:
+// }

@@ -11,9 +11,13 @@
     display: flex;
     justify-content: space-between;
     align-items:center;
+    p {margin: 15px 10px 15px 0;}
  .park-name {
-    display: flex;
-    align-items: center;
-    p {margin: 5px 7px;}
+            display: flex;
+            align-items: center;
  }
+}
+
+.buttons {
+    display: flex;
 }

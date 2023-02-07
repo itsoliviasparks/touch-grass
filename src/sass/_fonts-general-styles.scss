@@ -85,7 +85,9 @@ a {
     text-decoration: none;
 }
 
-p.main {
+span { text-transform: uppercase; }
+
+p.instruction {
     margin: 0.5rem;
     color: $tan;
     font-size: 1.2rem;
@@ -161,6 +163,16 @@ button {
     &:focus { background-color: $yellow; }
 }
 
+button.to-do-button {
+    margin: 0;
+    padding: 5px;
+    background-color: transparent;
+    font-size: 1.5rem;
+    transition: 0.2s;
+    &:hover,
+    &:focus { color:$orange; }
+}
+
 .close i {
     position: absolute;
     top: 15px;
@@ -169,25 +181,12 @@ button {
     font-size: 2rem;
     transition: 0.2s;
     &:hover,
-    &:focus {
-        color: $yellow;
-        font-size: 2rem;
-    }
+    &:focus { color: $yellow; }
 }
 
 //icons
-i {
-    padding: 1px;
-    font-size: 0.8rem;
-    color: $green;
-    transition: 0.2s;
-    &:hover,
-    &:focus {
-        font-size: 1.8rem;
-        color: $orange;
-    }
-}
-
-.main i { color: $tan; }
+i { font-size: 1.2rem; }
 
 i.fa-info { font-size: 1.8rem; }
+
+.instruction i { color: $tan; }
