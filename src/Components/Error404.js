@@ -4,8 +4,8 @@ const Error404 = ({ handleClose }) => {
     return (
         <>
             <CloseButton handleClose={handleClose}/>
-            <h2>404</h2>
-            <h3>Lost in the Woods</h3>
+            <h3>404</h3>
+            <h4>Lost in the Woods</h4>
         </>
     );
 };

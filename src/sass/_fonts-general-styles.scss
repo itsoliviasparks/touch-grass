@@ -26,7 +26,8 @@ section { width: 100%; }
 h1,
 header p,
 h2,
-h3 {
+h3,
+h4 {
     margin: 0;
     font-family: $header-font;
     text-align: center;
@@ -48,12 +49,13 @@ h2{
 }
 
 
-h2.state {
+h3 {
+    color: $yellow;
     font-size: 4rem;
     letter-spacing: 0.8rem;
 }
 
-h3 {
+h4 {
     color: $orange;
     font-size: 2.4rem;
     letter-spacing: 0.5rem;
@@ -83,18 +85,22 @@ a {
     text-decoration: none;
 }
 
+p.main {
+    margin: 0.5rem;
+    color: $tan;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+p.done { text-decoration: line-through;}
+
 a:hover,
 a:focus { text-decoration: underline; }
-
-.park-name p:hover,
-.park-name p:focus {
-    color: $orange;
-    text-decoration: underline;
-}
 
 p.no-parks {
     font-weight: 700;
     text-transform: uppercase;
+    text-align: center;
 }
 
 p.error {
@@ -120,7 +126,7 @@ select,
 button {
     color: $tan;
     font-family: $body-font;
-    font-size: 2rem;
+    font-size: 1.8rem;
     letter-spacing: 0.2rem;
 }
 
@@ -155,23 +161,33 @@ button {
     &:focus { background-color: $yellow; }
 }
 
-.close {
+.close i {
     position: absolute;
     top: 15px;
     right: 15px;
     color: $tan;
+    font-size: 2rem;
     transition: 0.2s;
-    i:hover,
-    i:focus { color: $yellow; }
+    &:hover,
+    &:focus {
+        color: $yellow;
+        font-size: 2rem;
+    }
 }
 
 //icons
-.park i { color: $green; }
-
-.park-info-link i {
-    font-size: 1.8rem;
+i {
+    padding: 1px;
+    font-size: 0.8rem;
+    color: $green;
     transition: 0.2s;
     &:hover,
-    &:focus { color: $orange; }
+    &:focus {
+        font-size: 1.8rem;
+        color: $orange;
+    }
 }
-.park-name i { font-size: 0.8rem; }
+
+.main i { color: $tan; }
+
+i.fa-info { font-size: 1.8rem; }

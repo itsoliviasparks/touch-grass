@@ -9,7 +9,6 @@ import Border from "./Components/Border";
 import Header from "./Components/Header";
 import UserSelectors from "./Components/UserSelectors";
 import DisplayParkInfo from "./Components/DisplayParkInfo";
-import FieldNotesButton from "./Components/FieldNotesButton";
 import DisplayToDos from "./Components/DisplayToDos";
 import Footer from "./Components/Footer";
 import ApiError from "./Components/ApiError";
@@ -24,6 +23,7 @@ function App() {
   const [parkInfo, setParkInfo] = useState([]);
 
   const navigate = useNavigate();
+  const apiKey = "7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX";
 
   //stores usersState in stateful variable
   const handleStateSelection = (e) => {
@@ -77,7 +77,7 @@ function App() {
         method: "GET",
         dataResponse: "json",
         params: {
-          api_key: "7XHElwOipPV6R4gzo3qbRAbY7q8MXA9TGPoKAHVX",
+          api_key: apiKey,
           id: activity.id,
         },
       })
@@ -143,7 +143,6 @@ function App() {
           <Route path="*" element={<Error404 handleClose={handleClose} />} />
         </Routes>
       </main>
-      <FieldNotesButton />
       <Footer />
     </>
   );

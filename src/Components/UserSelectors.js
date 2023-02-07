@@ -1,4 +1,5 @@
 import InputError from "./InputError";
+import FieldNotesButton from "./FieldNotesButton";
 
 const UserSelectors =
     ({
@@ -28,6 +29,7 @@ const UserSelectors =
     ];
 
     return (
+        <>
         <form>
             <fieldset className="state-selector">
                 <label htmlFor="stateSelector">
@@ -119,6 +121,8 @@ const UserSelectors =
             <button onClick={handleButton}>Your Adventure Awaits</button>
             {inputError === true ? <InputError />: null}
         </form>
+        <FieldNotesButton />
+        </>
     );
 };
 

@@ -19,10 +19,13 @@ const DisplayToDos = ({ handleClose }) => {
     return (
         <section className="field-notes">
             <CloseButton handleClose={handleClose} />
-            <h2>Field Notes</h2>
+            <h3>Field Notes</h3>
+            <p className="main">Please select <i className="fa-solid fa-circle-check"></i> to mark as completed</p>
+            <p className="main">Please select <i className="fa-solid fa-circle-xmark"></i> to remove from your Field Notes</p>
+            <p className="main">Please select <i className="fa-solid fa-info"></i> for additional park information</p>
             <div className="to-do-cards">
                 <div className="to-do card">
-                    <h3>Plan For Your Visit</h3>
+                    <h4>Plan For Your Visit</h4>
                     <ul>
                         {
                             toDos.map(({ isDone, park, state, activity }, i) => {
@@ -31,7 +34,15 @@ const DisplayToDos = ({ handleClose }) => {
                                 } else {
                                     return (
                                         <li key={i}>
-                                            <p>{park}, {state}: {activity}</p>
+                                            <div className="park-name">
+                                                <i className="fa-solid fa-circle-check"></i>
+                                                <i className="fa-solid fa-circle-xmark"></i>
+                                                <p>{park}, {state}: {activity}</p>
+                                            </div>
+                                            <a href="#" target="_blank" rel="noreferrer" className="park-info-link">
+                                                <i className="fa-solid fa-info"></i>
+                                                <p className="sr-only">Park Info Link</p>
+                                            </a>
                                         </li>
                                     )
                                 }
@@ -39,8 +50,8 @@ const DisplayToDos = ({ handleClose }) => {
                         }
                     </ul>
                 </div>
-                <div className="done card">
-                    <h3>Visited</h3>
+                <div className="to-do card">
+                    <h4>Visited</h4>
                     <ul>
                         {
                             toDos.map(({ isDone, park, state, activity }, i) => {
@@ -49,7 +60,14 @@ const DisplayToDos = ({ handleClose }) => {
                                 } else {
                                     return (
                                         <li key={i}>
-                                            <p>{park}, {state}: {activity}</p>
+                                            <div className="park-name">
+                                                <i className="fa-solid fa-circle-xmark"></i>
+                                                <p className="done">{park}, {state}: {activity}</p>
+                                            </div>
+                                            <a href="#" target="_blank" rel="noreferrer" className="park-info-link">
+                                                <i className="fa-solid fa-info"></i>
+                                                <p className="sr-only">Park Info Link</p>
+                                            </a>
                                         </li>
                                     )
                                 }
