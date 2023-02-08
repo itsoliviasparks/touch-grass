@@ -14,7 +14,7 @@ const DisplayParkInfo =
     }) => {
 
         //when click on button, the activity is added to the database as a toDoItem object
-        const handleAdd = (park, activity ) => {
+        const handleAdd = ( park, activity ) => {
             //toDoItem to send to database
             const toDoItem = {
                 activity: activity.name,
