@@ -72,7 +72,7 @@ const DisplayToDos = ({ handleClose }) => {
                                                 </div>
                                                 <p><span>{toDo.data.park}</span>: {toDo.data.activity}</p>
                                             </div>
-                                            <a href={toDo.data.url} target="_blank" rel="noreferrer" className="park-info-link">
+                                            <a href={toDo.data.url} className="park-info-link" target="_blank" rel="noreferrer" aria-label="link text - new window">
                                                 <i className="fa-solid fa-info"></i>
                                                 <p className="sr-only">Park Info Link</p>
                                             </a>
@@ -101,7 +101,7 @@ const DisplayToDos = ({ handleClose }) => {
                                                 </div>
                                                 <p className="done"><span>{toDo.data.park}</span>: {toDo.data.activity}</p>
                                             </div>
-                                            <a href={toDo.data.url} target="_blank" rel="noreferrer" className="park-info-link">
+                                            <a href={toDo.data.url} className="park-info-link" target="_blank" rel="noreferrer" aria-label="link text - new window">
                                                 <i className="fa-solid fa-info"></i>
                                                 <p className="sr-only">Park Info Link</p>
                                             </a>

@@ -71,7 +71,7 @@ header p {
     }
     &:last-child {
         margin-top: 0.3rem;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         letter-spacing: 0.2rem;
     }
 }
@@ -117,7 +117,7 @@ p.error {
 
 footer p,
 footer a {
-    font-size: 1rem;
+    font-size: 1.4rem;
     letter-spacing: 0.1rem;
     font-weight: 700;
     text-align: center;
@@ -176,6 +176,7 @@ button.to-do-button {
     &:hover,
     &:focus { color:$orange; }
     &:active { color: $yellow; }
+    &.clicked { color:$orange; }
 }
 
 .close i {
