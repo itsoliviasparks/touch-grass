@@ -34,8 +34,9 @@ const DisplayParkInfo =
                     <section className="park-info">
                         <CloseButton handleClose={handleClose} />
                         <h3>{usersStateFull}</h3>
-                        <p className="instruction">Please select {<i className="fa-solid fa-circle"></i>} to add to your Field Notes</p>
-                        <p className="instruction">Please select <i className="fa-solid fa-info"></i> for additional park information</p>
+                        <p className="instruction">How to write your Field Notes:</p>
+                        <p className="instruction"><i className="fa-solid fa-circle"></i> adds the activity to your Field Notes</p>
+                        <p className="instruction"><i className="fa-solid fa-info"></i> navigates to the U. S. National Park's official website</p>
                         <ul className="info">
                             {
                                 parkInfo.map(arr => {
