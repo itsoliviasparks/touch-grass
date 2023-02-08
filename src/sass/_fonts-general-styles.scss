@@ -175,6 +175,7 @@ button.to-do-button {
     transition: 0.2s;
     &:hover,
     &:focus { color:$orange; }
+    &:active { color: $yellow; }
 }
 
 .close i {
