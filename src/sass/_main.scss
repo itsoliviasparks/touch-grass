@@ -1,0 +1,11 @@
+@use "_variables.scss" as *;
+
+main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 3px;
+    padding: 45px;
+    background-color: $green;
+}

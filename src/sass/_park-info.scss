@@ -1,0 +1,36 @@
+@use "_variables.scss" as *;
+
+.park-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-self: center;
+    width: 100%;
+}
+
+.card {
+    width: 47%;
+    margin: 10px 0;
+    border-radius: 3px;
+    padding: 15px 25px;
+    background-color: $tan;
+}
+
+.park-list {
+    li.park {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .park-name {
+            display: flex;
+            align-items: center;
+            p {margin: 5px 10px 5px 0;}
+        }
+    }
+}

@@ -1,0 +1,18 @@
+@use "_variables.scss" as *;
+
+.loading i {
+    padding: 5px;
+    color: $orange;
+    font-size: 7rem;
+    animation: color-change 4s infinite ease-in-out;
+    &:first-child,
+    &:nth-child(3){ font-size: 4rem; }
+}
+
+@keyframes color-change {
+    0% { color: $green; }
+    25% { color: $orange; }
+    50% { color: $green; }
+    75% { color: $yellow; }
+    100% { color: $green; }
+}
