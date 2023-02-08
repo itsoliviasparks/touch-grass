@@ -14,7 +14,7 @@ const DisplayParkInfo =
     }) => {
 
         //when click on button, the activity is added to the database as a toDoItem object
-        const handleAdd = ( park, activity ) => {
+        const handleAdd = ( park, activity, e ) => {
             //toDoItem to send to database
             const toDoItem = {
                 activity: activity.name,
@@ -25,6 +25,7 @@ const DisplayParkInfo =
             const database = getDatabase(firebase);
             const dbRef = ref(database);
             push(dbRef, toDoItem);
+            e.currentTarget.classList.add("clicked");
         };
 
         return (
@@ -60,12 +61,12 @@ const DisplayParkInfo =
                                                             return (
                                                                 <li className="park" key={park.parkCode}>
                                                                     <div className="park-name">
-                                                                        <button className="to-do-button" onClick={() => {handleAdd(park, arr[0])}}>
+                                                                        <button className="to-do-button" onClick={(e) => {handleAdd(park, arr[0], e)}}>
                                                                             <i className="fa-solid fa-circle"></i>
                                                                         </button>
                                                                             <p>{park.name}</p>
                                                                     </div>
-                                                                    <a href={park.url} target="_blank" rel="noreferrer" className="park-info-link">
+                                                                    <a href={park.url} className="park-info-link" target="_blank" rel="noreferrer" aria-label="link text - new window">
                                                                         <i className="fa-solid fa-info"></i>
                                                                         <p className="sr-only">Park Info Link</p>
                                                                     </a>

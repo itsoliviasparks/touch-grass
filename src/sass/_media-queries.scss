@@ -63,14 +63,14 @@
     }
     h3 { font-size: 2.5rem; }
     header p {
-        font-size: 1.7rem;
+        font-size: 2rem;
         letter-spacing: 0.2rem;
         &:first-child {
-            font-size: 1.3rem;
+            font-size: 1.7rem;
             letter-spacing: 0.2rem;
         }
         &:last-child {
-            font-size: 1rem;
+            font-size: 1.5rem;
             letter-spacing: 0.1rem;
         }
     }
@@ -102,7 +102,7 @@
 @media (max-width: 480px) {
     //fonts
     h1 {
-        font-size: 2.5rem;
+        font-size: 3rem;
         letter-spacing: 0.4rem;
     }
     h2 {
@@ -142,8 +142,4 @@
         letter-spacing: 0.3rem;
     }
     h3 { font-size: 2rem; }
-    label,
-    legend,
-    select,
-    button { font-size: 1.2rem; }
 }
