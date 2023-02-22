@@ -9,7 +9,7 @@ This app allows users to search all National Parks by State & activity. Then, th
 - On app mount, the user is presented with a drop-down list of U.S. States & checkboxes for various outdoor activities. The user can select as many activities as they like before clicking the "Your Adventure Awaits" button
 - From there, the user is brought to the results screen, which displays a list of all National Parks (with hyper links to their respective info sites) per activity in their selected state
 - The user can then click each park to add to their "Field Notes"
-- The Field Notes section acts as a To-Do List, where the user can add, delete, and move activities from Planning to Visit & Visited
+- The Field Notes section acts as a To-Do List, where the user can add, delete, and move activities between the Planning to Visit & Visited column
 
 ## Features
 - React, Firebase, an API, & Sass, were used in the creation of this project
