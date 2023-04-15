@@ -21,7 +21,7 @@ React, Firebase, an API, & Sass
 Manipulating the data I got back from the API was my biggest challenge. Previous to this project I found data manipulation quite intimadating, but working through this project has made me feel much more confident!
 
 ### How I Manipulated the Data:
-This logic is located in `App.js`
+This logic is located in `/src/App.js`
 ```
 const getParkInfo = () => {
     const resultArr = [];
