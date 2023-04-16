@@ -6,19 +6,19 @@ An app for those needing to get outside, Touch Grass is crafted with the <a href
 This app allows users to search all National Parks by State & activity. Then, the user can add their activities to their Field Notes to-do list.
 
 ## Project Purpose & Goal
-The U.S. National Park API is a great resource, but its search abilities are limited. Therefore, when looking at the National Park website, you can either see a list of all National Parks with a specific activity or see a list of all National Parks within each state. When planning my outdoor trips, I always want to be able to see a filtered list of National Parks in the state I'm traveling to that have the activities I'm interested in. I built Touch Grass to solve that problem.
+The U.S. National Park API is a great resource, but its search abilities are limited. Therefore, when looking at the National Park website, you can either see a list of all National Parks with a specific activity, or see a list of all National Parks within each state. When planning my outdoor trips, I always want to be able to see a filtered list of National Parks in the state I'm traveling to that have the activities I'm interested in. I built Touch Grass to solve that problem.
 
 ## Tech Stack
 React, Firebase, an API, & Sass
 
 ## Use
-- On app mount, the user is presented with a drop-down list of U.S. States & checkboxes for various outdoor activities. The user can select as many activities as they like before clicking the "Your Adventure Awaits" button
+- On app mount, the user is presented with a drop-down list of U.S. States & checkboxes for various outdoor activities. The user can select as many activities as they like before clicking the 'Your Adventure Awaits' button
 - After clicking the button, the user is taken to the results screen, which displays a list of all National Parks in their selected state that offer the chosen activities. Each park is displayed with a hyperlink to its respective information site
 - The user can click on each park to add it to their "Field Notes" section
 - The "Field Notes" section serves as a to-do list, where the user can add, delete, and move activities between the "Planning to Visit" and "Visited" columns
 
 ## Problems Solved
-Manipulating the data I got back from the API was my biggest challenge. Previous to this project I found data manipulation quite intimadating, but working through this project has made me feel much more confident!
+Manipulating the data I got back from the API was my biggest challenge. Prior to this project, I found data manipulation quite intimidating, but working through this project has made me feel much more confident!
 
 ### How I Manipulated the Data:
 This logic is located in `/src/App.js`
