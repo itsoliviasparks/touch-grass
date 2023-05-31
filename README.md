@@ -1,5 +1,5 @@
 # Touch Grass 🏕️
-<a href="https://itsoliviasparks-touch-grass.netlify.app">Live Site</a>
+<a href="https://itsoliviasparks-touch-grass.netlify.app">🔗 Live Site</a>
 
 ## About
 An app for those needing to get outside, Touch Grass is crafted with the <a href="https://www.nps.gov/subjects/developer/api-documentation.htm">U.S. National Park Service API</a>.
